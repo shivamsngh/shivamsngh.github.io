@@ -1,10 +1,10 @@
 {
     "events": [
         {
-            "eventName": "Something Big Coming Up",
-            "details": "Coming Soon",
-            "link": "https://accessify.ml",
-            "startDate": "22 April 2018",
+            "eventName": "Web4All Conference Lyon, France",
+            "details": "Will be presenting a research on Assistive Technology in Lyon, France at the reputed Web4All conference on 24th of April. The paper is titled \"Accessify: An ML Powered Application to Automatically Provide Image Descriptions on Website\" co authored with Nishith and Anurag",
+            "link": "https://www.w4a.info/2018/conference-program/",
+            "startDate": "23 April 2018",
             "endDare": "25 April 2018",
             "capacity": "Speaker"
         },
@@ -92,6 +92,18 @@
             "title": "Chanakya's Chant",
             "myrating": 8,
             "author": "Ashwin Sanghi",
+            "read": true
+        },
+        {
+            "title": "Wings of Fire",
+            "myrating": 9,
+            "author": "Dr. APJ Abdul Kalam and Arun Tiwari",
+            "read": true
+        },
+        {
+            "title": "Turning Points: A journey through challenges",
+            "myrating": 8,
+            "author": "Dr. APJ Abdul Kalam and Arun Tiwari",
             "read": true
         },
         {
