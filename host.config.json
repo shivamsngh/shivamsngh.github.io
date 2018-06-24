@@ -1,0 +1,91 @@
+{
+  "hosting": {
+    "rules": [
+      {
+        "include": "/",
+        "headers": [
+          {
+            "name": "Link",
+            "value": "</build/app/app.tmw8ri9y.js>;rel=preload;as=script"
+          },
+          {
+            "name": "Link",
+            "value": "</build/app/c1mwvao3.js>;rel=preload;as=script"
+          },
+          {
+            "name": "Link",
+            "value": "</build/app/9bioqhox.js>;rel=preload;as=script"
+          },
+          {
+            "name": "Link",
+            "value": "</build/app/6nh1acd7.js>;rel=preload;as=script"
+          },
+          {
+            "name": "Link",
+            "value": "</build/app/alnzl3k2.js>;rel=preload;as=script"
+          },
+          {
+            "name": "Link",
+            "value": "</assets/img/book-default.svg>;rel=preload;as=image"
+          }
+        ]
+      },
+      {
+        "include": "/bucketlist",
+        "headers": [
+          {
+            "name": "Link",
+            "value": "</build/app/app.tmw8ri9y.js>;rel=preload;as=script"
+          },
+          {
+            "name": "Link",
+            "value": "</build/app/9bioqhox.js>;rel=preload;as=script"
+          },
+          {
+            "name": "Link",
+            "value": "</build/app/alnzl3k2.js>;rel=preload;as=script"
+          },
+          {
+            "name": "Link",
+            "value": "</build/app/s0zyzbg0.js>;rel=preload;as=script"
+          }
+        ]
+      },
+      {
+        "include": "/event",
+        "headers": [
+          {
+            "name": "Link",
+            "value": "</build/app/app.tmw8ri9y.js>;rel=preload;as=script"
+          },
+          {
+            "name": "Link",
+            "value": "</build/app/9bioqhox.js>;rel=preload;as=script"
+          },
+          {
+            "name": "Link",
+            "value": "</build/app/oqzrvjux.js>;rel=preload;as=script"
+          }
+        ]
+      },
+      {
+        "include": "/build/app/**",
+        "headers": [
+          {
+            "name": "Cache-Control",
+            "value": "public, max-age=31536000"
+          }
+        ]
+      },
+      {
+        "include": "/sw.js",
+        "headers": [
+          {
+            "name": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
+          }
+        ]
+      }
+    ]
+  }
+}
