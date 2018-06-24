@@ -1,6 +1,14 @@
 {
     "events": [
         {
+            "eventName": "Published Independent Component Communication @Medium",
+            "details": "I just published a small technical blog post on Independent Component Communication in Angular.",
+            "link": "https://medium.com/@shivam.soham666/independent-component-communication-in-angular-2914ec554a35",
+            "startDate": "17 June 2018",
+            "endDare": "17 June 2018",
+            "capacity": "Blogger"
+        },
+        {
             "eventName": "Web4All Conference Lyon, France",
             "details": "Will be presenting a research on Assistive Technology in Lyon, France at the reputed Web4All conference on 24th of April. The paper is titled \"Accessify: An ML Powered Application to Automatically Provide Image Descriptions on Website\" co authored with Nishith and Anurag",
             "link": "https://www.w4a.info/2018/conference-program/",

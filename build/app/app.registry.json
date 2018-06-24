@@ -1,0 +1,67 @@
+{
+  "namespace": "App",
+  "fsNamespace": "app",
+  "loader": "../app.js",
+  "global": "app.global.js",
+  "core": "app.bkya1ua1.js",
+  "corePolyfilled": "app.tmw8ri9y.js",
+  "components": {
+    "app-recent-event-card": {
+      "$": "bq6rb8mn"
+    },
+    "app-root": {
+      "$": "ghupxgl9"
+    },
+    "my-web-about": {
+      "$": "6nh1acd7"
+    },
+    "my-web-blog": {
+      "$": "cuq5cixn"
+    },
+    "my-web-book-library": {
+      "$": "cuq5cixn"
+    },
+    "my-web-bucketlist": {
+      "$": "s0zyzbg0"
+    },
+    "my-web-contact": {
+      "$": "6nh1acd7"
+    },
+    "my-web-event": {
+      "$": "oqzrvjux"
+    },
+    "my-web-header": {
+      "$": "287iyw7r"
+    },
+    "my-web-home": {
+      "$": "6nh1acd7"
+    },
+    "my-web-more": {
+      "$": "6nh1acd7"
+    },
+    "my-web-nav": {
+      "$": "ghupxgl9"
+    },
+    "my-web-photo-gallery": {
+      "$": "s0zyzbg0"
+    },
+    "my-web-portfolio": {
+      "$": "6nh1acd7"
+    },
+    "my-web-social": {
+      "$": "cuq5cixn"
+    },
+    "my-web-twitter": {
+      "$": "cuq5cixn"
+    },
+    "stencil-route": {
+      "$": "ghupxgl9"
+    },
+    "stencil-route-link": {
+      "$": "ghupxgl9"
+    },
+    "stencil-router": {
+      "$": "ghupxgl9"
+    }
+  }
+}
