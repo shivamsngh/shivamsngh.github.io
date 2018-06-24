@@ -1,2 +1,7 @@
 /*! Built with http://stenciljs.com */
-const{h:s}=window.App;class a{}export{a};
+const { h } = window.App;
+
+class CardEvent {
+}
+
+export { CardEvent as a };

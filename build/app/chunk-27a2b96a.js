@@ -1,2 +1,4058 @@
 /*! Built with http://stenciljs.com */
-const{h:t}=window.App;var e="undefined"!=typeof global?global:"undefined"!=typeof self?self:"undefined"!=typeof window?window:{};!function(t){if(!t.fetch){var e={searchParams:"URLSearchParams"in t,iterable:"Symbol"in t&&"iterator"in Symbol,blob:"FileReader"in t&&"Blob"in t&&function(){try{return new Blob,!0}catch(t){return!1}}(),formData:"FormData"in t,arrayBuffer:"ArrayBuffer"in t};if(e.arrayBuffer)var r=["[object Int8Array]","[object Uint8Array]","[object Uint8ClampedArray]","[object Int16Array]","[object Uint16Array]","[object Int32Array]","[object Uint32Array]","[object Float32Array]","[object Float64Array]"],n=function(t){return t&&DataView.prototype.isPrototypeOf(t)},o=ArrayBuffer.isView||function(t){return t&&r.indexOf(Object.prototype.toString.call(t))>-1};f.prototype.append=function(t,e){t=s(t),e=u(e);var r=this.map[t];this.map[t]=r?r+","+e:e},f.prototype.delete=function(t){delete this.map[s(t)]},f.prototype.get=function(t){return t=s(t),this.has(t)?this.map[t]:null},f.prototype.has=function(t){return this.map.hasOwnProperty(s(t))},f.prototype.set=function(t,e){this.map[s(t)]=u(e)},f.prototype.forEach=function(t,e){for(var r in this.map)this.map.hasOwnProperty(r)&&t.call(e,this.map[r],r,this)},f.prototype.keys=function(){var t=[];return this.forEach(function(e,r){t.push(r)}),c(t)},f.prototype.values=function(){var t=[];return this.forEach(function(e){t.push(e)}),c(t)},f.prototype.entries=function(){var t=[];return this.forEach(function(e,r){t.push([r,e])}),c(t)},e.iterable&&(f.prototype[Symbol.iterator]=f.prototype.entries);var i=["DELETE","GET","HEAD","OPTIONS","POST","PUT"];v.prototype.clone=function(){return new v(this,{body:this._bodyInit})},y.call(v.prototype),y.call(m.prototype),m.prototype.clone=function(){return new m(this._bodyInit,{status:this.status,statusText:this.statusText,headers:new f(this.headers),url:this.url})},m.error=function(){var t=new m(null,{status:0,statusText:""});return t.type="error",t};var a=[301,302,303,307,308];m.redirect=function(t,e){if(-1===a.indexOf(e))throw new RangeError("Invalid status code");return new m(null,{status:e,headers:{location:t}})},t.Headers=f,t.Request=v,t.Response=m,t.fetch=function(t,r){return new Promise(function(n,o){var i=new v(t,r),a=new XMLHttpRequest;a.onload=function(){var t,e,r={status:a.status,statusText:a.statusText,headers:(t=a.getAllResponseHeaders()||"",e=new f,t.replace(/\r?\n[\t ]+/g," ").split(/\r?\n/).forEach(function(t){var r=t.split(":"),n=r.shift().trim();if(n){var o=r.join(":").trim();e.append(n,o)}}),e)};r.url="responseURL"in a?a.responseURL:r.headers.get("X-Request-URL");var o="response"in a?a.response:a.responseText;n(new m(o,r))},a.onerror=function(){o(new TypeError("Network request failed"))},a.ontimeout=function(){o(new TypeError("Network request failed"))},a.open(i.method,i.url,!0),"include"===i.credentials?a.withCredentials=!0:"omit"===i.credentials&&(a.withCredentials=!1),"responseType"in a&&e.blob&&(a.responseType="blob"),i.headers.forEach(function(t,e){a.setRequestHeader(e,t)}),a.send(void 0===i._bodyInit?null:i._bodyInit)})},t.fetch.polyfill=!0}function s(t){if("string"!=typeof t&&(t=String(t)),/[^a-z0-9\-#$%&'*+.\^_`|~]/i.test(t))throw new TypeError("Invalid character in header field name");return t.toLowerCase()}function u(t){return"string"!=typeof t&&(t=String(t)),t}function c(t){var r={next:function(){var e=t.shift();return{done:void 0===e,value:e}}};return e.iterable&&(r[Symbol.iterator]=function(){return r}),r}function f(t){this.map={},t instanceof f?t.forEach(function(t,e){this.append(e,t)},this):Array.isArray(t)?t.forEach(function(t){this.append(t[0],t[1])},this):t&&Object.getOwnPropertyNames(t).forEach(function(e){this.append(e,t[e])},this)}function h(t){if(t.bodyUsed)return Promise.reject(new TypeError("Already read"));t.bodyUsed=!0}function l(t){return new Promise(function(e,r){t.onload=function(){e(t.result)},t.onerror=function(){r(t.error)}})}function p(t){var e=new FileReader,r=l(e);return e.readAsArrayBuffer(t),r}function d(t){if(t.slice)return t.slice(0);var e=new Uint8Array(t.byteLength);return e.set(new Uint8Array(t)),e.buffer}function y(){return this.bodyUsed=!1,this._initBody=function(t){if(this._bodyInit=t,t)if("string"==typeof t)this._bodyText=t;else if(e.blob&&Blob.prototype.isPrototypeOf(t))this._bodyBlob=t;else if(e.formData&&FormData.prototype.isPrototypeOf(t))this._bodyFormData=t;else if(e.searchParams&&URLSearchParams.prototype.isPrototypeOf(t))this._bodyText=t.toString();else if(e.arrayBuffer&&e.blob&&n(t))this._bodyArrayBuffer=d(t.buffer),this._bodyInit=new Blob([this._bodyArrayBuffer]);else{if(!e.arrayBuffer||!ArrayBuffer.prototype.isPrototypeOf(t)&&!o(t))throw new Error("unsupported BodyInit type");this._bodyArrayBuffer=d(t)}else this._bodyText="";this.headers.get("content-type")||("string"==typeof t?this.headers.set("content-type","text/plain;charset=UTF-8"):this._bodyBlob&&this._bodyBlob.type?this.headers.set("content-type",this._bodyBlob.type):e.searchParams&&URLSearchParams.prototype.isPrototypeOf(t)&&this.headers.set("content-type","application/x-www-form-urlencoded;charset=UTF-8"))},e.blob&&(this.blob=function(){var t=h(this);if(t)return t;if(this._bodyBlob)return Promise.resolve(this._bodyBlob);if(this._bodyArrayBuffer)return Promise.resolve(new Blob([this._bodyArrayBuffer]));if(this._bodyFormData)throw new Error("could not read FormData body as blob");return Promise.resolve(new Blob([this._bodyText]))},this.arrayBuffer=function(){return this._bodyArrayBuffer?h(this)||Promise.resolve(this._bodyArrayBuffer):this.blob().then(p)}),this.text=function(){var t,e,r,n=h(this);if(n)return n;if(this._bodyBlob)return t=this._bodyBlob,r=l(e=new FileReader),e.readAsText(t),r;if(this._bodyArrayBuffer)return Promise.resolve(function(t){for(var e=new Uint8Array(t),r=new Array(e.length),n=0;n<e.length;n++)r[n]=String.fromCharCode(e[n]);return r.join("")}(this._bodyArrayBuffer));if(this._bodyFormData)throw new Error("could not read FormData body as text");return Promise.resolve(this._bodyText)},e.formData&&(this.formData=function(){return this.text().then(b)}),this.json=function(){return this.text().then(JSON.parse)},this}function v(t,e){var r,n,o=(e=e||{}).body;if(t instanceof v){if(t.bodyUsed)throw new TypeError("Already read");this.url=t.url,this.credentials=t.credentials,e.headers||(this.headers=new f(t.headers)),this.method=t.method,this.mode=t.mode,o||null==t._bodyInit||(o=t._bodyInit,t.bodyUsed=!0)}else this.url=String(t);if(this.credentials=e.credentials||this.credentials||"omit",!e.headers&&this.headers||(this.headers=new f(e.headers)),this.method=(n=(r=e.method||this.method||"GET").toUpperCase(),i.indexOf(n)>-1?n:r),this.mode=e.mode||this.mode||null,this.referrer=null,("GET"===this.method||"HEAD"===this.method)&&o)throw new TypeError("Body not allowed for GET or HEAD requests");this._initBody(o)}function b(t){var e=new FormData;return t.trim().split("&").forEach(function(t){if(t){var r=t.split("="),n=r.shift().replace(/\+/g," "),o=r.join("=").replace(/\+/g," ");e.append(decodeURIComponent(n),decodeURIComponent(o))}}),e}function m(t,e){e||(e={}),this.type="default",this.status=void 0===e.status?200:e.status,this.ok=this.status>=200&&this.status<300,this.statusText="statusText"in e?e.statusText:"OK",this.headers=new f(e.headers),this.url=e.url||"",this._initBody(t)}}("undefined"!=typeof self?self:void 0);var r=setTimeout;function n(){}function o(t){if(!(this instanceof o))throw new TypeError("Promises must be constructed via new");if("function"!=typeof t)throw new TypeError("not a function");this._state=0,this._handled=!1,this._value=void 0,this._deferreds=[],c(t,this)}function i(t,e){for(;3===t._state;)t=t._value;0!==t._state?(t._handled=!0,o._immediateFn(function(){var r=1===t._state?e.onFulfilled:e.onRejected;if(null!==r){var n;try{n=r(t._value)}catch(t){return void s(e.promise,t)}a(e.promise,n)}else(1===t._state?a:s)(e.promise,t._value)})):t._deferreds.push(e)}function a(t,e){try{if(e===t)throw new TypeError("A promise cannot be resolved with itself.");if(e&&("object"==typeof e||"function"==typeof e)){var r=e.then;if(e instanceof o)return t._state=3,t._value=e,void u(t);if("function"==typeof r)return void c((n=r,i=e,function(){n.apply(i,arguments)}),t)}t._state=1,t._value=e,u(t)}catch(e){s(t,e)}var n,i}function s(t,e){t._state=2,t._value=e,u(t)}function u(t){2===t._state&&0===t._deferreds.length&&o._immediateFn(function(){t._handled||o._unhandledRejectionFn(t._value)});for(var e=0,r=t._deferreds.length;e<r;e++)i(t,t._deferreds[e]);t._deferreds=null}function c(t,e){var r=!1;try{t(function(t){r||(r=!0,a(e,t))},function(t){r||(r=!0,s(e,t))})}catch(t){if(r)return;r=!0,s(e,t)}}o.prototype.catch=function(t){return this.then(null,t)},o.prototype.then=function(t,e){var r=new this.constructor(n);return i(this,new function(t,e,r){this.onFulfilled="function"==typeof t?t:null,this.onRejected="function"==typeof e?e:null,this.promise=r}(t,e,r)),r},o.prototype.finally=function(t){var e=this.constructor;return this.then(function(r){return e.resolve(t()).then(function(){return r})},function(r){return e.resolve(t()).then(function(){return e.reject(r)})})},o.all=function(t){return new o(function(e,r){if(!t||void 0===t.length)throw new TypeError("Promise.all accepts an array");var n=Array.prototype.slice.call(t);if(0===n.length)return e([]);var o=n.length;function i(t,a){try{if(a&&("object"==typeof a||"function"==typeof a)){var s=a.then;if("function"==typeof s)return void s.call(a,function(e){i(t,e)},r)}n[t]=a,0==--o&&e(n)}catch(t){r(t)}}for(var a=0;a<n.length;a++)i(a,n[a])})},o.resolve=function(t){return t&&"object"==typeof t&&t.constructor===o?t:new o(function(e){e(t)})},o.reject=function(t){return new o(function(e,r){r(t)})},o.race=function(t){return new o(function(e,r){for(var n=0,o=t.length;n<o;n++)t[n].then(e,r)})},o._immediateFn="function"==typeof setImmediate&&function(t){setImmediate(t)}||function(t){r(t,0)},o._unhandledRejectionFn=function(t){"undefined"!=typeof console&&console&&console.warn("Possible Unhandled Promise Rejection:",t)};var f=function(){if("undefined"!=typeof self)return self;if("undefined"!=typeof window)return window;if(void 0!==e)return e;throw new Error("unable to locate global object")}();function h(t,e){return t(e={exports:{}},e.exports),e.exports}f.Promise||(f.Promise=o);var l=h(function(t){var e=t.exports="undefined"!=typeof window&&window.Math==Math?window:"undefined"!=typeof self&&self.Math==Math?self:Function("return this")();"number"==typeof __g&&(__g=e)}),p=h(function(t){var e=t.exports={version:"2.5.5"};"number"==typeof __e&&(__e=e)}),d=(p.version,function(t){return"object"==typeof t?null!==t:"function"==typeof t}),y=function(t){if(!d(t))throw TypeError(t+" is not an object!");return t},v=function(t){try{return!!t()}catch(t){return!0}},b=!v(function(){return 7!=Object.defineProperty({},"a",{get:function(){return 7}}).a}),m=l.document,_=d(m)&&d(m.createElement),g=function(t){return _?m.createElement(t):{}},w=!b&&!v(function(){return 7!=Object.defineProperty(g("div"),"a",{get:function(){return 7}}).a}),S=function(t,e){if(!d(t))return t;var r,n;if(e&&"function"==typeof(r=t.toString)&&!d(n=r.call(t)))return n;if("function"==typeof(r=t.valueOf)&&!d(n=r.call(t)))return n;if(!e&&"function"==typeof(r=t.toString)&&!d(n=r.call(t)))return n;throw TypeError("Can't convert object to primitive value")},E=Object.defineProperty,A={f:b?Object.defineProperty:function(t,e,r){if(y(t),e=S(e,!0),y(r),w)try{return E(t,e,r)}catch(t){}if("get"in r||"set"in r)throw TypeError("Accessors not supported!");return"value"in r&&(t[e]=r.value),t}},O=function(t,e){return{enumerable:!(1&t),configurable:!(2&t),writable:!(4&t),value:e}},T=b?function(t,e,r){return A.f(t,e,O(1,r))}:function(t,e,r){return t[e]=r,t},j={}.hasOwnProperty,P=function(t,e){return j.call(t,e)},C=0,D=Math.random(),N=function(t){return"Symbol(".concat(void 0===t?"":t,")_",(++C+D).toString(36))},k=h(function(t){var e=N("src"),r=Function.toString,n=(""+r).split("toString");p.inspectSource=function(t){return r.call(t)},(t.exports=function(t,r,o,i){var a="function"==typeof o;a&&(P(o,"name")||T(o,"name",r)),t[r]!==o&&(a&&(P(o,e)||T(o,e,t[r]?""+t[r]:n.join(String(r)))),t===l?t[r]=o:i?t[r]?t[r]=o:T(t,r,o):(delete t[r],T(t,r,o)))})(Function.prototype,"toString",function(){return"function"==typeof this&&this[e]||r.call(this)})}),x=function(t,e,r){if(function(e){if("function"!=typeof t)throw TypeError(t+" is not a function!")}(),void 0===e)return t;switch(r){case 1:return function(r){return t.call(e,r)};case 2:return function(r,n){return t.call(e,r,n)};case 3:return function(r,n,o){return t.call(e,r,n,o)}}return function(){return t.apply(e,arguments)}},F=function(t,e,r){var n,o,i,a,s=t&F.F,u=t&F.G,c=t&F.S,f=t&F.P,h=t&F.B,d=u?l:c?l[e]||(l[e]={}):(l[e]||{}).prototype,y=u?p:p[e]||(p[e]={}),v=y.prototype||(y.prototype={});for(n in u&&(r=e),r)i=((o=!s&&d&&void 0!==d[n])?d:r)[n],a=h&&o?x(i,l):f&&"function"==typeof i?x(Function.call,i):i,d&&k(d,n,i,t&F.U),y[n]!=i&&T(y,n,a),f&&v[n]!=i&&(v[n]=i)};l.core=p,F.F=1,F.G=2,F.S=4,F.P=8,F.B=16,F.W=32,F.U=64,F.R=128;var L=F,B={}.toString,I=function(t){return B.call(t).slice(8,-1)},R=Object("z").propertyIsEnumerable(0)?Object:function(t){return"String"==I(t)?t.split(""):Object(t)},M=function(t){if(void 0==t)throw TypeError("Can't call method on  "+t);return t},U=function(t){return Object(M(t))},V=Math.ceil,W=Math.floor,z=function(t){return isNaN(t=+t)?0:(t>0?W:V)(t)},G=Math.min,H=function(t){return t>0?G(z(t),9007199254740991):0},K=Array.isArray||function(t){return"Array"==I(t)},q=l["__core-js_shared__"]||(l["__core-js_shared__"]={}),J=function(t){return q[t]||(q[t]={})},$=h(function(t){var e=J("wks"),r=l.Symbol,n="function"==typeof r;(t.exports=function(t){return e[t]||(e[t]=n&&r[t]||(n?r:N)("Symbol."+t))}).store=e}),Y=$("species"),X=function(t,e){return new(function(t){var e;return K(t)&&("function"!=typeof(e=t.constructor)||e!==Array&&!K(e.prototype)||(e=void 0),d(e)&&null===(e=e[Y])&&(e=void 0)),void 0===e?Array:e}(t))(e)},Q=function(t,e){var r=1==t,n=2==t,o=3==t,i=4==t,a=6==t,s=5==t||a,u=e||X;return function(e,c,f){for(var h,l,p=U(e),d=R(p),y=x(c,f,3),v=H(d.length),b=0,m=r?u(e,v):n?u(e,0):void 0;v>b;b++)if((s||b in d)&&(l=y(h=d[b],b,p),t))if(r)m[b]=l;else if(l)switch(t){case 3:return!0;case 5:return h;case 6:return b;case 2:m.push(h)}else if(i)return!1;return a?-1:o||i?i:m}},Z=$("unscopables"),tt=Array.prototype;void 0==tt[Z]&&T(tt,Z,{});var et=function(t){tt[Z][t]=!0},rt=Q(5),nt=!0;"find"in[]&&Array(1).find(function(){nt=!1}),L(L.P+L.F*nt,"Array",{find:function(t){return rt(this,t,arguments.length>1?arguments[1]:void 0)}}),et("find"),p.Array.find;var ot=Q(6),it=!0;"findIndex"in[]&&Array(1).findIndex(function(){it=!1}),L(L.P+L.F*it,"Array",{findIndex:function(t){return ot(this,t,arguments.length>1?arguments[1]:void 0)}}),et("findIndex"),p.Array.findIndex;var at=function(t){return R(M(t))},st=Math.max,ut=Math.min,ct=J("keys"),ft=function(t){return ct[t]||(ct[t]=N(t))},ht=(!1,function(t,e,r){var n=at(t),o=H(n.length),i=function(t,e){return(t=z(t))<0?st(t+e,0):ut(t,e)}(r,o);for(0;o>i;i++)if(i in n&&n[i]===e)return i||0;return-1}),lt=ft("IE_PROTO"),pt=function(t,e){var r,n=at(t),o=0,i=[];for(r in n)r!=lt&&P(n,r)&&i.push(r);for(;e.length>o;)P(n,r=e[o++])&&(~ht(i,r)||i.push(r));return i},dt="constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf".split(","),yt=Object.keys||function(t){return pt(t,dt)},vt={f:Object.getOwnPropertySymbols},bt={f:{}.propertyIsEnumerable},mt=Object.assign,_t=!mt||v(function(){var t={},e={},r=Symbol(),n="abcdefghijklmnopqrst";return t[r]=7,n.split("").forEach(function(t){e[t]=t}),7!=mt({},t)[r]||Object.keys(mt({},e)).join("")!=n})?function(t,e){for(var r=U(t),n=arguments.length,o=1,i=vt.f,a=bt.f;n>o;)for(var s,u=R(arguments[o++]),c=i?yt(u).concat(i(u)):yt(u),f=c.length,h=0;f>h;)a.call(u,s=c[h++])&&(r[s]=u[s]);return r}:mt;L(L.S+L.F,"Object",{assign:_t}),p.Object.assign;var gt=$("match"),wt=$("match"),St="".startsWith;L(L.P+L.F*function(t){var e=/./;try{"/./"[t](e)}catch(r){try{return e[wt]=!1,!"/./"[t](e)}catch(t){}}return!0}("startsWith"),"String",{startsWith:function(t){var e=function(t,e,r){if(d(n=e)&&(void 0!==(o=n[gt])?o:"RegExp"==I(n)))throw TypeError("String#"+r+" doesn't accept regex!");var n,o;return String(M(t))}(this,t,"startsWith"),r=H(Math.min(arguments.length>1?arguments[1]:void 0,e.length)),n=String(t);return St?St.call(e,n,r):e.slice(r,r+n.length)===n}}),p.String.startsWith,L(L.P,"String",{repeat:function(t){var e=String(M(this)),r="",n=z(t);if(n<0||n==1/0)throw RangeError("Count can't be negative");for(;n>0;(n>>>=1)&&(e+=e))1&n&&(r+=e);return r}}),p.String.repeat;var Et=h(function(t){var e=N("meta"),r=A.f,n=0,o=Object.isExtensible||function(){return!0},i=!v(function(){return o(Object.preventExtensions({}))}),a=function(t){r(t,e,{value:{i:"O"+ ++n,w:{}}})},s=t.exports={KEY:e,NEED:!1,fastKey:function(t,r){if(!d(t))return"symbol"==typeof t?t:("string"==typeof t?"S":"P")+t;if(!P(t,e)){if(!o(t))return"F";if(!r)return"E";a(t)}return t[e].i},getWeak:function(t,r){if(!P(t,e)){if(!o(t))return!0;if(!r)return!1;a(t)}return t[e].w},onFreeze:function(t){return i&&s.NEED&&o(t)&&!P(t,e)&&a(t),t}}}),At=(Et.KEY,Et.NEED,Et.fastKey,Et.getWeak,Et.onFreeze,A.f),Ot=$("toStringTag"),Tt=function(t,e,r){t&&!P(t=r?t:t.prototype,Ot)&&At(t,Ot,{configurable:!0,value:e})},jt={f:$},Pt=A.f,Ct=function(t){var e=p.Symbol||(p.Symbol=l.Symbol||{});"_"==t.charAt(0)||t in e||Pt(e,t,{value:jt.f(t)})},Dt=b?Object.defineProperties:function(t,e){y(t);for(var r,n=yt(e),o=n.length,i=0;o>i;)A.f(t,r=n[i++],e[r]);return t},Nt=l.document,kt=Nt&&Nt.documentElement,xt=ft("IE_PROTO"),Ft=function(){},Lt=function(){var t,e=g("iframe"),r=dt.length;for(e.style.display="none",kt.appendChild(e),e.src="javascript:",(t=e.contentWindow.document).open(),t.write("<script>document.F=Object<\/script>"),t.close(),Lt=t.F;r--;)delete Lt.prototype[dt[r]];return Lt()},Bt=Object.create||function(t,e){var r;return null!==t?(Ft.prototype=y(t),r=new Ft,Ft.prototype=null,r[xt]=t):r=Lt(),void 0===e?r:Dt(r,e)},It=dt.concat("length","prototype"),Rt={f:Object.getOwnPropertyNames||function(t){return pt(t,It)}},Mt=Rt.f,Ut={}.toString,Vt="object"==typeof window&&window&&Object.getOwnPropertyNames?Object.getOwnPropertyNames(window):[],Wt={f:function(t){return Vt&&"[object Window]"==Ut.call(t)?function(t){try{return Mt(t)}catch(t){return Vt.slice()}}(t):Mt(at(t))}},zt=Object.getOwnPropertyDescriptor,Gt={f:b?zt:function(t,e){if(t=at(t),e=S(e,!0),w)try{return zt(t,e)}catch(t){}if(P(t,e))return O(!bt.f.call(t,e),t[e])}},Ht=Et.KEY,Kt=Gt.f,qt=A.f,Jt=Wt.f,$t=l.Symbol,Yt=l.JSON,Xt=Yt&&Yt.stringify,Qt=$("_hidden"),Zt=$("toPrimitive"),te={}.propertyIsEnumerable,ee=J("symbol-registry"),re=J("symbols"),ne=J("op-symbols"),oe=Object.prototype,ie="function"==typeof $t,ae=l.QObject,se=!ae||!ae.prototype||!ae.prototype.findChild,ue=b&&v(function(){return 7!=Bt(qt({},"a",{get:function(){return qt(this,"a",{value:7}).a}})).a})?function(t,e,r){var n=Kt(oe,e);n&&delete oe[e],qt(t,e,r),n&&t!==oe&&qt(oe,e,n)}:qt,ce=function(t){var e=re[t]=Bt($t.prototype);return e._k=t,e},fe=ie&&"symbol"==typeof $t.iterator?function(t){return"symbol"==typeof t}:function(t){return t instanceof $t},he=function(t,e,r){return t===oe&&he(ne,e,r),y(t),e=S(e,!0),y(r),P(re,e)?(r.enumerable?(P(t,Qt)&&t[Qt][e]&&(t[Qt][e]=!1),r=Bt(r,{enumerable:O(0,!1)})):(P(t,Qt)||qt(t,Qt,O(1,{})),t[Qt][e]=!0),ue(t,e,r)):qt(t,e,r)},le=function(t,e){y(t);for(var r,n=function(t){var e=yt(t),r=vt.f;if(r)for(var n,o=r(t),i=bt.f,a=0;o.length>a;)i.call(t,n=o[a++])&&e.push(n);return e}(e=at(e)),o=0,i=n.length;i>o;)he(t,r=n[o++],e[r]);return t},pe=function(t){var e=te.call(this,t=S(t,!0));return!(this===oe&&P(re,t)&&!P(ne,t))&&(!(e||!P(this,t)||!P(re,t)||P(this,Qt)&&this[Qt][t])||e)},de=function(t,e){if(t=at(t),e=S(e,!0),t!==oe||!P(re,e)||P(ne,e)){var r=Kt(t,e);return!r||!P(re,e)||P(t,Qt)&&t[Qt][e]||(r.enumerable=!0),r}},ye=function(t){for(var e,r=Jt(at(t)),n=[],o=0;r.length>o;)P(re,e=r[o++])||e==Qt||e==Ht||n.push(e);return n},ve=function(t){for(var e,r=t===oe,n=Jt(r?ne:at(t)),o=[],i=0;n.length>i;)!P(re,e=n[i++])||r&&!P(oe,e)||o.push(re[e]);return o};ie||(k(($t=function(){if(this instanceof $t)throw TypeError("Symbol is not a constructor!");var t=N(arguments.length>0?arguments[0]:void 0),e=function(r){this===oe&&e.call(ne,r),P(this,Qt)&&P(this[Qt],t)&&(this[Qt][t]=!1),ue(this,t,O(1,r))};return b&&se&&ue(oe,t,{configurable:!0,set:e}),ce(t)}).prototype,"toString",function(){return this._k}),Gt.f=de,A.f=he,Rt.f=Wt.f=ye,bt.f=pe,vt.f=ve,b&&k(oe,"propertyIsEnumerable",pe,!0),jt.f=function(t){return ce($(t))}),L(L.G+L.W+L.F*!ie,{Symbol:$t});for(var be="hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables".split(","),me=0;be.length>me;)$(be[me++]);for(var _e=yt($.store),ge=0;_e.length>ge;)Ct(_e[ge++]);L(L.S+L.F*!ie,"Symbol",{for:function(t){return P(ee,t+="")?ee[t]:ee[t]=$t(t)},keyFor:function(t){if(!fe(t))throw TypeError(t+" is not a symbol!");for(var e in ee)if(ee[e]===t)return e},useSetter:function(){se=!0},useSimple:function(){se=!1}}),L(L.S+L.F*!ie,"Object",{create:function(t,e){return void 0===e?Bt(t):le(Bt(t),e)},defineProperty:he,defineProperties:le,getOwnPropertyDescriptor:de,getOwnPropertyNames:ye,getOwnPropertySymbols:ve}),Yt&&L(L.S+L.F*(!ie||v(function(){var t=$t();return"[null]"!=Xt([t])||"{}"!=Xt({a:t})||"{}"!=Xt(Object(t))})),"JSON",{stringify:function(t){for(var e,r,n=[t],o=1;arguments.length>o;)n.push(arguments[o++]);if(r=e=n[1],(d(e)||void 0!==t)&&!fe(t))return K(e)||(e=function(t,e){if("function"==typeof r&&(e=r.call(this,t,e)),!fe(e))return e}),n[1]=e,Xt.apply(Yt,n)}}),$t.prototype[Zt]||T($t.prototype,Zt,$t.prototype.valueOf),Tt($t,"Symbol"),Tt(Math,"Math",!0),Tt(l.JSON,"JSON",!0);var we=$("toStringTag"),Se="Arguments"==I(function(){return arguments}()),Ee={};Ee[$("toStringTag")]="z",Ee+""!="[object z]"&&k(Object.prototype,"toString",function(){return"[object "+(void 0===this?"Undefined":null===this?"Null":"string"==typeof(e=function(t,e){try{return t[e]}catch(t){}}(t=Object(this),we))?e:Se?I(t):"Object"==(r=I(t))&&"function"==typeof t.callee?"Arguments":r)+"]";var t,e,r},!0),Ct("asyncIterator"),Ct("observable"),p.Symbol;var Ae={},Oe={};T(Oe,$("iterator"),function(){return this});var Te=function(t,e,r){t.prototype=Bt(Oe,{next:O(1,r)}),Tt(t,e+" Iterator")},je=ft("IE_PROTO"),Pe=Object.prototype,Ce=Object.getPrototypeOf||function(t){return t=U(t),P(t,je)?t[je]:"function"==typeof t.constructor&&t instanceof t.constructor?t.constructor.prototype:t instanceof Object?Pe:null},De=$("iterator"),Ne=!([].keys&&"next"in[].keys()),ke=function(){return this},xe=function(t,e,r,n,o,i,a){Te(r,e,n);var s,u,c,f=function(t){if(!Ne&&t in d)return d[t];switch(t){case"keys":case"values":return function(){return new r(this,t)}}return function(){return new r(this,t)}},h=e+" Iterator",l="values"==o,p=!1,d=t.prototype,y=d[De]||d["@@iterator"]||o&&d[o],v=y||f(o),b=o?l?f("entries"):v:void 0,m="Array"==e&&d.entries||y;if(m&&(c=Ce(m.call(new t)))!==Object.prototype&&c.next&&(Tt(c,h,!0),"function"!=typeof c[De]&&T(c,De,ke)),l&&y&&"values"!==y.name&&(p=!0,v=function(){return y.call(this)}),(Ne||p||!d[De])&&T(d,De,v),Ae[e]=v,Ae[h]=ke,o)if(s={values:l?v:f("values"),keys:i?v:f("keys"),entries:b},a)for(u in s)u in d||k(d,u,s[u]);else L(L.P+L.F*(Ne||p),e,s);return s},Fe=(!0,function(t,e){var r,n,o=String(M(t)),i=z(e),a=o.length;return i<0||i>=a?"":(r=o.charCodeAt(i))<55296||r>56319||i+1===a||(n=o.charCodeAt(i+1))<56320||n>57343?o.charAt(i):o.slice(i,i+2)});xe(String,"String",function(t){this._t=String(t),this._i=0},function(){var t,e=this._t,r=this._i;return r>=e.length?{value:void 0,done:!0}:(t=Fe(e,r),this._i+=t.length,{value:t,done:!1})});var Le=function(t,e){return{value:e,done:!!t}},Be=xe(Array,"Array",function(t,e){this._t=at(t),this._i=0,this._k=e},function(){var t=this._t,e=this._k,r=this._i++;return!t||r>=t.length?(this._t=void 0,Le(1)):Le(0,"keys"==e?r:"values"==e?t[r]:[r,t[r]])},"values");Ae.Arguments=Ae.Array,et("keys"),et("values"),et("entries");for(var Ie=$("iterator"),Re=$("toStringTag"),Me=Ae.Array,Ue={CSSRuleList:!0,CSSStyleDeclaration:!1,CSSValueList:!1,ClientRectList:!1,DOMRectList:!1,DOMStringList:!1,DOMTokenList:!0,DataTransferItemList:!1,FileList:!1,HTMLAllCollection:!1,HTMLCollection:!1,HTMLFormElement:!1,HTMLSelectElement:!1,MediaList:!0,MimeTypeArray:!1,NamedNodeMap:!1,NodeList:!0,PaintRequestList:!1,Plugin:!1,PluginArray:!1,SVGLengthList:!1,SVGNumberList:!1,SVGPathSegList:!1,SVGPointList:!1,SVGStringList:!1,SVGTransformList:!1,SourceBufferList:!1,StyleSheetList:!0,TextTrackCueList:!1,TextTrackList:!1,TouchList:!1},Ve=yt(Ue),We=0;We<Ve.length;We++){var ze,Ge=Ve[We],He=Ue[Ge],Ke=l[Ge],qe=Ke&&Ke.prototype;if(qe&&(qe[Ie]||T(qe,Ie,Me),qe[Re]||T(qe,Re,Ge),Ae[Ge]=Me,He))for(ze in Be)qe[ze]||k(qe,ze,Be[ze],!0)}jt.f("iterator");var Je=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var r in e)e.hasOwnProperty(r)&&(t[r]=e[r])};function $e(t,e){function r(){this.constructor=t}Je(t,e),t.prototype=null===e?Object.create(e):(r.prototype=e.prototype,new r)}var Ye=Object.assign||function(t){for(var e,r=1,n=arguments.length;r<n;r++)for(var o in e=arguments[r])Object.prototype.hasOwnProperty.call(e,o)&&(t[o]=e[o]);return t};function Xe(t,e,r,n){return new(r||(r=Promise))(function(o,i){function a(t){try{u(n.next(t))}catch(t){i(t)}}function s(t){try{u(n.throw(t))}catch(t){i(t)}}function u(t){t.done?o(t.value):new r(function(e){e(t.value)}).then(a,s)}u((n=n.apply(t,e||[])).next())})}function Qe(t,e){var r,n,o,i,a={label:0,sent:function(){if(1&o[0])throw o[1];return o[1]},trys:[],ops:[]};return i={next:s(0),throw:s(1),return:s(2)},"function"==typeof Symbol&&(i[Symbol.iterator]=function(){return this}),i;function s(i){return function(s){return function(i){if(r)throw new TypeError("Generator is already executing.");for(;a;)try{if(r=1,n&&(o=n[2&i[0]?"return":i[0]?"throw":"next"])&&!(o=o.call(n,i[1])).done)return o;switch(n=0,o&&(i=[0,o.value]),i[0]){case 0:case 1:o=i;break;case 4:return a.label++,{value:i[1],done:!1};case 5:a.label++,n=i[1],i=[0];continue;case 7:i=a.ops.pop(),a.trys.pop();continue;default:if(!(o=(o=a.trys).length>0&&o[o.length-1])&&(6===i[0]||2===i[0])){a=0;continue}if(3===i[0]&&(!o||i[1]>o[0]&&i[1]<o[3])){a.label=i[1];break}if(6===i[0]&&a.label<o[1]){a.label=o[1],o=i;break}if(o&&a.label<o[2]){a.label=o[2],a.ops.push(i);break}o[2]&&a.ops.pop(),a.trys.pop();continue}i=e.call(t,a)}catch(t){i=[6,t],n=0}finally{r=o=0}if(5&i[0])throw i[1];return{value:i[0]?i[1]:void 0,done:!0}}([i,s])}}}var Ze={NODE_CLIENT:!1,NODE_ADMIN:!1,SDK_VERSION:"${JSCORE_VERSION}"},tr=function(t,e){if(!t)throw er(e)},er=function(t){return new Error("Firebase Database ("+Ze.SDK_VERSION+") INTERNAL ASSERT FAILED: "+t)},rr=function(t){for(var e=[],r=0,n=0;n<t.length;n++){var o=t.charCodeAt(n);o<128?e[r++]=o:o<2048?(e[r++]=o>>6|192,e[r++]=63&o|128):55296==(64512&o)&&n+1<t.length&&56320==(64512&t.charCodeAt(n+1))?(o=65536+((1023&o)<<10)+(1023&t.charCodeAt(++n)),e[r++]=o>>18|240,e[r++]=o>>12&63|128,e[r++]=o>>6&63|128,e[r++]=63&o|128):(e[r++]=o>>12|224,e[r++]=o>>6&63|128,e[r++]=63&o|128)}return e},nr={byteToCharMap_:null,charToByteMap_:null,byteToCharMapWebSafe_:null,charToByteMapWebSafe_:null,ENCODED_VALS_BASE:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",get ENCODED_VALS(){return this.ENCODED_VALS_BASE+"+/="},get ENCODED_VALS_WEBSAFE(){return this.ENCODED_VALS_BASE+"-_."},HAS_NATIVE_SUPPORT:"function"==typeof atob,encodeByteArray:function(t,e){if(!Array.isArray(t))throw Error("encodeByteArray takes an array as a parameter");this.init_();for(var r=e?this.byteToCharMapWebSafe_:this.byteToCharMap_,n=[],o=0;o<t.length;o+=3){var i=t[o],a=o+1<t.length,s=a?t[o+1]:0,u=o+2<t.length,c=u?t[o+2]:0,f=i>>2,h=(3&i)<<4|s>>4,l=(15&s)<<2|c>>6,p=63&c;u||(p=64,a||(l=64)),n.push(r[f],r[h],r[l],r[p])}return n.join("")},encodeString:function(t,e){return this.HAS_NATIVE_SUPPORT&&!e?btoa(t):this.encodeByteArray(rr(t),e)},decodeString:function(t,e){return this.HAS_NATIVE_SUPPORT&&!e?atob(t):function(t){for(var e=[],r=0,n=0;r<t.length;){var o=t[r++];if(o<128)e[n++]=String.fromCharCode(o);else if(o>191&&o<224){var i=t[r++];e[n++]=String.fromCharCode((31&o)<<6|63&i)}else if(o>239&&o<365){var a=((7&o)<<18|(63&(i=t[r++]))<<12|(63&(s=t[r++]))<<6|63&t[r++])-65536;e[n++]=String.fromCharCode(55296+(a>>10)),e[n++]=String.fromCharCode(56320+(1023&a))}else{i=t[r++];var s=t[r++];e[n++]=String.fromCharCode((15&o)<<12|(63&i)<<6|63&s)}}return e.join("")}(this.decodeStringToByteArray(t,e))},decodeStringToByteArray:function(t,e){this.init_();for(var r=e?this.charToByteMapWebSafe_:this.charToByteMap_,n=[],o=0;o<t.length;){var i=r[t.charAt(o++)],a=o<t.length?r[t.charAt(o)]:0,s=++o<t.length?r[t.charAt(o)]:64,u=++o<t.length?r[t.charAt(o)]:64;if(++o,null==i||null==a||null==s||null==u)throw Error();var c=i<<2|a>>4;if(n.push(c),64!=s){var f=a<<4&240|s>>2;if(n.push(f),64!=u){var h=s<<6&192|u;n.push(h)}}}return n},init_:function(){if(!this.byteToCharMap_){this.byteToCharMap_={},this.charToByteMap_={},this.byteToCharMapWebSafe_={},this.charToByteMapWebSafe_={};for(var t=0;t<this.ENCODED_VALS.length;t++)this.byteToCharMap_[t]=this.ENCODED_VALS.charAt(t),this.charToByteMap_[this.byteToCharMap_[t]]=t,this.byteToCharMapWebSafe_[t]=this.ENCODED_VALS_WEBSAFE.charAt(t),this.charToByteMapWebSafe_[this.byteToCharMapWebSafe_[t]]=t,t>=this.ENCODED_VALS_BASE.length&&(this.charToByteMap_[this.ENCODED_VALS_WEBSAFE.charAt(t)]=t,this.charToByteMapWebSafe_[this.ENCODED_VALS.charAt(t)]=t)}}},or=function(t){var e=rr(t);return nr.encodeByteArray(e,!0)},ir=function(t){try{return nr.decodeString(t,!0)}catch(t){console.error("base64Decode failed: ",t)}return null};function ar(t){return sr(void 0,t)}function sr(t,e){if(!(e instanceof Object))return e;switch(e.constructor){case Date:return new Date(e.getTime());case Object:void 0===t&&(t={});break;case Array:t=[];break;default:return e}for(var r in e)e.hasOwnProperty(r)&&(t[r]=sr(t[r],e[r]));return t}function ur(t,e,r){t[e]=r}var cr=function(){function t(){var t=this;this.promise=new Promise(function(e,r){t.resolve=e,t.reject=r})}return t.prototype.wrapCallback=function(t){var e=this;return function(r,n){r?e.reject(r):e.resolve(n),"function"==typeof t&&(e.promise.catch(function(){}),1===t.length?t(r):t(r,n))}},t}(),fr=function(){return"undefined"!=typeof window&&!!(window.cordova||window.phonegap||window.PhoneGap)&&/ios|iphone|ipod|ipad|android|blackberry|iemobile/i.test("undefined"!=typeof navigator&&"string"==typeof navigator.userAgent?navigator.userAgent:"")},hr=function(){return"object"==typeof navigator&&"ReactNative"===navigator.product},lr=function(){return!0===Ze.NODE_ADMIN},pr=Error.captureStackTrace,dr=function(t,e){if(this.code=t,this.message=e,pr)pr(this,yr.prototype.create);else try{throw Error.apply(this,arguments)}catch(t){this.name="FirebaseError",Object.defineProperty(this,"stack",{get:function(){return t.stack}})}};dr.prototype=Object.create(Error.prototype),dr.prototype.constructor=dr,dr.prototype.name="FirebaseError";var yr=function(){function t(t,e,r){this.service=t,this.serviceName=e,this.errors=r,this.pattern=/\{\$([^}]+)}/g}return t.prototype.create=function(t,e){void 0===e&&(e={});var r,n=this.errors[t],o=this.service+"/"+t;r=void 0===n?"Error":n.replace(this.pattern,function(t,r){var n=e[r];return void 0!==n?n.toString():"<"+r+"?>"}),r=this.serviceName+": "+r+" ("+o+").";var i=new dr(o,r);for(var a in e)e.hasOwnProperty(a)&&"_"!==a.slice(-1)&&(i[a]=e[a]);return i},t}();function vr(t){return JSON.parse(t)}function br(t){return JSON.stringify(t)}var mr=function(t){var e={},r={},n={},o="";try{var i=t.split(".");e=vr(ir(i[0])||""),r=vr(ir(i[1])||""),o=i[2],n=r.d||{},delete r.d}catch(t){}return{header:e,claims:r,data:n,signature:o}},_r=function(t){var e=mr(t),r=e.claims;return!!e.signature&&!!r&&"object"==typeof r&&r.hasOwnProperty("iat")},gr=function(t){var e=mr(t).claims;return"object"==typeof e&&!0===e.admin},wr=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},Sr=function(t,e){if(Object.prototype.hasOwnProperty.call(t,e))return t[e]},Er=function(t,e){for(var r in t)Object.prototype.hasOwnProperty.call(t,r)&&e(r,t[r])},Ar=function(t){return e={},Er(t,function(t,r){e[t]=r}),e;var e},Or=function(t){for(var e in t)return!1;return!0},Tr=function(t){var e=0;for(var r in t)e++;return e},jr=function(t,e,r){var n={};for(var o in t)n[o]=e.call(r,t[o],o,t);return n},Pr=function(t,e,r){for(var n in t)if(e.call(r,t[n],n,t))return n},Cr=function(t,e,r){var n=Pr(t,e,r);return n&&t[n]},Dr=function(t){for(var e in t)return e},Nr=function(t){var e=[],r=0;for(var n in t)e[r++]=t[n];return e},kr=function(t,e){for(var r in t)if(Object.prototype.hasOwnProperty.call(t,r)&&!e(r,t[r]))return!1;return!0},xr=function(t){var e=[];return Er(t,function(t,r){Array.isArray(r)?r.forEach(function(r){e.push(encodeURIComponent(t)+"="+encodeURIComponent(r))}):e.push(encodeURIComponent(t)+"="+encodeURIComponent(r))}),e.length?"&"+e.join("&"):""},Fr=function(t){function e(){var e=t.call(this)||this;e.chain_=[],e.buf_=[],e.W_=[],e.pad_=[],e.inbuf_=0,e.total_=0,e.blockSize=64,e.pad_[0]=128;for(var r=1;r<e.blockSize;++r)e.pad_[r]=0;return e.reset(),e}return $e(e,t),e.prototype.reset=function(){this.chain_[0]=1732584193,this.chain_[1]=4023233417,this.chain_[2]=2562383102,this.chain_[3]=271733878,this.chain_[4]=3285377520,this.inbuf_=0,this.total_=0},e.prototype.compress_=function(t,e){e||(e=0);var r=this.W_;if("string"==typeof t)for(var n=0;n<16;n++)r[n]=t.charCodeAt(e)<<24|t.charCodeAt(e+1)<<16|t.charCodeAt(e+2)<<8|t.charCodeAt(e+3),e+=4;else for(n=0;n<16;n++)r[n]=t[e]<<24|t[e+1]<<16|t[e+2]<<8|t[e+3],e+=4;for(n=16;n<80;n++){var o=r[n-3]^r[n-8]^r[n-14]^r[n-16];r[n]=4294967295&(o<<1|o>>>31)}var i,a,s=this.chain_[0],u=this.chain_[1],c=this.chain_[2],f=this.chain_[3],h=this.chain_[4];for(n=0;n<80;n++)n<40?n<20?(i=f^u&(c^f),a=1518500249):(i=u^c^f,a=1859775393):n<60?(i=u&c|f&(u|c),a=2400959708):(i=u^c^f,a=3395469782),o=(s<<5|s>>>27)+i+h+a+r[n]&4294967295,h=f,f=c,c=4294967295&(u<<30|u>>>2),u=s,s=o;this.chain_[0]=this.chain_[0]+s&4294967295,this.chain_[1]=this.chain_[1]+u&4294967295,this.chain_[2]=this.chain_[2]+c&4294967295,this.chain_[3]=this.chain_[3]+f&4294967295,this.chain_[4]=this.chain_[4]+h&4294967295},e.prototype.update=function(t,e){if(null!=t){void 0===e&&(e=t.length);for(var r=e-this.blockSize,n=0,o=this.buf_,i=this.inbuf_;n<e;){if(0==i)for(;n<=r;)this.compress_(t,n),n+=this.blockSize;if("string"==typeof t){for(;n<e;)if(o[i]=t.charCodeAt(n),++n,++i==this.blockSize){this.compress_(o),i=0;break}}else for(;n<e;)if(o[i]=t[n],++n,++i==this.blockSize){this.compress_(o),i=0;break}}this.inbuf_=i,this.total_+=e}},e.prototype.digest=function(){var t=[],e=8*this.total_;this.inbuf_<56?this.update(this.pad_,56-this.inbuf_):this.update(this.pad_,this.blockSize-(this.inbuf_-56));for(var r=this.blockSize-1;r>=56;r--)this.buf_[r]=255&e,e/=256;this.compress_(this.buf_);var n=0;for(r=0;r<5;r++)for(var o=24;o>=0;o-=8)t[n]=this.chain_[r]>>o&255,++n;return t},e}(function(){this.blockSize=-1});function Lr(t,e){var r=new Br(t,e);return r.subscribe.bind(r)}var Br=function(){function t(t,e){var r=this;this.observers=[],this.unsubscribes=[],this.observerCount=0,this.task=Promise.resolve(),this.finalized=!1,this.onNoObservers=e,this.task.then(function(){t(r)}).catch(function(t){r.error(t)})}return t.prototype.next=function(t){this.forEachObserver(function(e){e.next(t)})},t.prototype.error=function(t){this.forEachObserver(function(e){e.error(t)}),this.close(t)},t.prototype.complete=function(){this.forEachObserver(function(t){t.complete()}),this.close()},t.prototype.subscribe=function(t,e,r){var n,o=this;if(void 0===t&&void 0===e&&void 0===r)throw new Error("Missing Observer.");void 0===(n=function(t,e){if("object"!=typeof t||null===t)return!1;for(var r=0,n=["next","error","complete"];r<n.length;r++){var o=n[r];if(o in t&&"function"==typeof t[o])return!0}return!1}(t)?t:{next:t,error:e,complete:r}).next&&(n.next=Ir),void 0===n.error&&(n.error=Ir),void 0===n.complete&&(n.complete=Ir);var i=this.unsubscribeOne.bind(this,this.observers.length);return this.finalized&&this.task.then(function(){try{o.finalError?n.error(o.finalError):n.complete()}catch(t){}}),this.observers.push(n),i},t.prototype.unsubscribeOne=function(t){void 0!==this.observers&&void 0!==this.observers[t]&&(delete this.observers[t],this.observerCount-=1,0===this.observerCount&&void 0!==this.onNoObservers&&this.onNoObservers(this))},t.prototype.forEachObserver=function(t){if(!this.finalized)for(var e=0;e<this.observers.length;e++)this.sendOne(e,t)},t.prototype.sendOne=function(t,e){var r=this;this.task.then(function(){if(void 0!==r.observers&&void 0!==r.observers[t])try{e(r.observers[t])}catch(t){"undefined"!=typeof console&&console.error&&console.error(t)}})},t.prototype.close=function(t){var e=this;this.finalized||(this.finalized=!0,void 0!==t&&(this.finalError=t),this.task.then(function(){e.observers=void 0,e.onNoObservers=void 0}))},t}();function Ir(){}var Rr=function(t,e,r,n){var o;if(n<e?o="at least "+e:n>r&&(o=0===r?"none":"no more than "+r),o)throw new Error(t+" failed: Was called with "+n+(1===n?" argument.":" arguments.")+" Expects "+o+".")};function Mr(t,e,r){var n="";switch(e){case 1:n=r?"first":"First";break;case 2:n=r?"second":"Second";break;case 3:n=r?"third":"Third";break;case 4:n=r?"fourth":"Fourth";break;default:throw new Error("errorPrefix called with argumentNumber > 4.  Need to update it?")}return t+" failed: "+(n+" argument ")}function Ur(t,e,r,n){if((!n||r)&&"function"!=typeof r)throw new Error(Mr(t,e,n)+"must be a valid function.")}function Vr(t,e,r,n){if((!n||r)&&("object"!=typeof r||null===r))throw new Error(Mr(t,e,n)+"must be a valid context object.")}var Wr=function(t){for(var e=[],r=0,n=0;n<t.length;n++){var o=t.charCodeAt(n);if(o>=55296&&o<=56319){var i=o-55296;n++,t.length,o=65536+(i<<10)+(t.charCodeAt(n)-56320)}o<128?e[r++]=o:o<2048?(e[r++]=o>>6|192,e[r++]=63&o|128):o<65536?(e[r++]=o>>12|224,e[r++]=o>>6&63|128,e[r++]=63&o|128):(e[r++]=o>>18|240,e[r++]=o>>12&63|128,e[r++]=o>>6&63|128,e[r++]=63&o|128)}return e},zr=function(t){for(var e=0,r=0;r<t.length;r++){var n=t.charCodeAt(r);n<128?e++:n<2048?e+=2:n>=55296&&n<=56319?(e+=4,r++):e+=3}return e},Gr=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},Hr="[DEFAULT]",Kr=[],qr=function(){function t(t,e,r){this.firebase_=r,this.isDeleted_=!1,this.services_={},this.name_=e.name,this._automaticDataCollectionEnabled=e.automaticDataCollectionEnabled||!1,this.options_=ar(t),this.INTERNAL={getUid:function(){return null},getToken:function(){return Promise.resolve(null)},addAuthTokenListener:function(t){Kr.push(t),setTimeout(function(){return t(null)},0)},removeAuthTokenListener:function(t){Kr=Kr.filter(function(e){return e!==t})}}}return Object.defineProperty(t.prototype,"automaticDataCollectionEnabled",{get:function(){return this.checkDestroyed_(),this._automaticDataCollectionEnabled},set:function(t){this.checkDestroyed_(),this._automaticDataCollectionEnabled=t},enumerable:!0,configurable:!0}),Object.defineProperty(t.prototype,"name",{get:function(){return this.checkDestroyed_(),this.name_},enumerable:!0,configurable:!0}),Object.defineProperty(t.prototype,"options",{get:function(){return this.checkDestroyed_(),this.options_},enumerable:!0,configurable:!0}),t.prototype.delete=function(){var t=this;return new Promise(function(e){t.checkDestroyed_(),e()}).then(function(){t.firebase_.INTERNAL.removeApp(t.name_);var e=[];return Object.keys(t.services_).forEach(function(r){Object.keys(t.services_[r]).forEach(function(n){e.push(t.services_[r][n])})}),Promise.all(e.map(function(t){return t.INTERNAL.delete()}))}).then(function(){t.isDeleted_=!0,t.services_={}})},t.prototype._getService=function(t,e){if(void 0===e&&(e=Hr),this.checkDestroyed_(),this.services_[t]||(this.services_[t]={}),!this.services_[t][e]){var r=e!==Hr?e:void 0,n=this.firebase_.INTERNAL.factories[t](this,this.extendApp.bind(this),r);this.services_[t][e]=n}return this.services_[t][e]},t.prototype.extendApp=function(t){var e=this;sr(this,t),t.INTERNAL&&t.INTERNAL.addAuthTokenListener&&(Kr.forEach(function(t){e.INTERNAL.addAuthTokenListener(t)}),Kr=[])},t.prototype.checkDestroyed_=function(){this.isDeleted_&&Jr("app-deleted",{name:this.name_})},t}();function Jr(t,e){throw $r.create(t,e)}qr.prototype.name&&qr.prototype.options||qr.prototype.delete||console.log("dc");var $r=new yr("app","Firebase",{"no-app":"No Firebase App '{$name}' has been created - call Firebase App.initializeApp()","bad-app-name":"Illegal App name: '{$name}","duplicate-app":"Firebase App named '{$name}' already exists","app-deleted":"Firebase App named '{$name}' already deleted","duplicate-service":"Firebase service named '{$name}' already registered","sa-not-supported":"Initializing the Firebase SDK with a service account is only allowed in a Node.js environment. On client devices, you should instead initialize the SDK with an api key and auth domain","invalid-app-argument":"firebase.{$name}() takes either no argument or a Firebase App instance."}),Yr=function t(){var e={},r={},n={},o={__esModule:!0,initializeApp:function(t,r){(void 0===r&&(r={}),"object"!=typeof r||null===r)&&(r={name:r});var n=r;void 0===n.name&&(n.name=Hr);var i=n.name;"string"==typeof i&&i||Jr("bad-app-name",{name:i+""}),Gr(e,i)&&Jr("duplicate-app",{name:i});var a=new qr(t,n,o);return e[i]=a,s(a,"create"),a},app:i,apps:null,Promise,SDK_VERSION:"5.0.4",INTERNAL:{registerService:function(t,e,s,u,c){r[t]&&Jr("duplicate-service",{name:t}),r[t]=e,u&&(n[t]=u,a().forEach(function(t){u("create",t)}));var f=function(e){return void 0===e&&(e=i()),"function"!=typeof e[t]&&Jr("invalid-app-argument",{name:t}),e[t]()};return void 0!==s&&sr(f,s),o[t]=f,qr.prototype[t]=function(){for(var e=[],r=0;r<arguments.length;r++)e[r]=arguments[r];return this._getService.bind(this,t).apply(this,c?e:[])},f},createFirebaseNamespace:t,extendNamespace:function(t){sr(o,t)},createSubscribe:Lr,ErrorFactory:yr,removeApp:function(t){s(e[t],"delete"),delete e[t]},factories:r,useAsService:u,Promise,deepExtend:sr}};function i(t){return Gr(e,t=t||Hr)||Jr("no-app",{name:t}),e[t]}function a(){return Object.keys(e).map(function(t){return e[t]})}function s(t,e){Object.keys(r).forEach(function(r){var o=u(t,r);null!==o&&n[o]&&n[o](e,t)})}function u(t,e){if("serverAuth"===e)return null;var r=e;return t.options,r}return ur(o,"default",o),Object.defineProperty(o,"apps",{get:a}),ur(i,"App",qr),o}();export{Yr as a,e as b,vr as c,br as d,wr as e,tr as f,Er as g,nr as h,Fr as i,Wr as j,lr as k,zr as l,Sr as m,Mr as n,Rr as o,Ur as p,cr as q,er as r,Ar as s,jr as t,Tr as u,Dr as v,kr as w,Vr as x,Or as y,Nr as z,Cr as A,Pr as B,ar as C,fr as D,or as E,Ze as F,gr as G,_r as H,hr as I,xr as J,Xe as K,Qe as L,$e as M,yr as N,Lr as O,Ye as P};
+const { h } = window.App;
+
+var global$1 = (typeof global !== "undefined" ? global :
+            typeof self !== "undefined" ? self :
+            typeof window !== "undefined" ? window : {});
+
+(function(self) {
+
+  if (self.fetch) {
+    return
+  }
+
+  var support = {
+    searchParams: 'URLSearchParams' in self,
+    iterable: 'Symbol' in self && 'iterator' in Symbol,
+    blob: 'FileReader' in self && 'Blob' in self && (function() {
+      try {
+        new Blob();
+        return true
+      } catch(e) {
+        return false
+      }
+    })(),
+    formData: 'FormData' in self,
+    arrayBuffer: 'ArrayBuffer' in self
+  };
+
+  if (support.arrayBuffer) {
+    var viewClasses = [
+      '[object Int8Array]',
+      '[object Uint8Array]',
+      '[object Uint8ClampedArray]',
+      '[object Int16Array]',
+      '[object Uint16Array]',
+      '[object Int32Array]',
+      '[object Uint32Array]',
+      '[object Float32Array]',
+      '[object Float64Array]'
+    ];
+
+    var isDataView = function(obj) {
+      return obj && DataView.prototype.isPrototypeOf(obj)
+    };
+
+    var isArrayBufferView = ArrayBuffer.isView || function(obj) {
+      return obj && viewClasses.indexOf(Object.prototype.toString.call(obj)) > -1
+    };
+  }
+
+  function normalizeName(name) {
+    if (typeof name !== 'string') {
+      name = String(name);
+    }
+    if (/[^a-z0-9\-#$%&'*+.\^_`|~]/i.test(name)) {
+      throw new TypeError('Invalid character in header field name')
+    }
+    return name.toLowerCase()
+  }
+
+  function normalizeValue(value) {
+    if (typeof value !== 'string') {
+      value = String(value);
+    }
+    return value
+  }
+
+  // Build a destructive iterator for the value list
+  function iteratorFor(items) {
+    var iterator = {
+      next: function() {
+        var value = items.shift();
+        return {done: value === undefined, value: value}
+      }
+    };
+
+    if (support.iterable) {
+      iterator[Symbol.iterator] = function() {
+        return iterator
+      };
+    }
+
+    return iterator
+  }
+
+  function Headers(headers) {
+    this.map = {};
+
+    if (headers instanceof Headers) {
+      headers.forEach(function(value, name) {
+        this.append(name, value);
+      }, this);
+    } else if (Array.isArray(headers)) {
+      headers.forEach(function(header) {
+        this.append(header[0], header[1]);
+      }, this);
+    } else if (headers) {
+      Object.getOwnPropertyNames(headers).forEach(function(name) {
+        this.append(name, headers[name]);
+      }, this);
+    }
+  }
+
+  Headers.prototype.append = function(name, value) {
+    name = normalizeName(name);
+    value = normalizeValue(value);
+    var oldValue = this.map[name];
+    this.map[name] = oldValue ? oldValue+','+value : value;
+  };
+
+  Headers.prototype['delete'] = function(name) {
+    delete this.map[normalizeName(name)];
+  };
+
+  Headers.prototype.get = function(name) {
+    name = normalizeName(name);
+    return this.has(name) ? this.map[name] : null
+  };
+
+  Headers.prototype.has = function(name) {
+    return this.map.hasOwnProperty(normalizeName(name))
+  };
+
+  Headers.prototype.set = function(name, value) {
+    this.map[normalizeName(name)] = normalizeValue(value);
+  };
+
+  Headers.prototype.forEach = function(callback, thisArg) {
+    for (var name in this.map) {
+      if (this.map.hasOwnProperty(name)) {
+        callback.call(thisArg, this.map[name], name, this);
+      }
+    }
+  };
+
+  Headers.prototype.keys = function() {
+    var items = [];
+    this.forEach(function(value, name) { items.push(name); });
+    return iteratorFor(items)
+  };
+
+  Headers.prototype.values = function() {
+    var items = [];
+    this.forEach(function(value) { items.push(value); });
+    return iteratorFor(items)
+  };
+
+  Headers.prototype.entries = function() {
+    var items = [];
+    this.forEach(function(value, name) { items.push([name, value]); });
+    return iteratorFor(items)
+  };
+
+  if (support.iterable) {
+    Headers.prototype[Symbol.iterator] = Headers.prototype.entries;
+  }
+
+  function consumed(body) {
+    if (body.bodyUsed) {
+      return Promise.reject(new TypeError('Already read'))
+    }
+    body.bodyUsed = true;
+  }
+
+  function fileReaderReady(reader) {
+    return new Promise(function(resolve, reject) {
+      reader.onload = function() {
+        resolve(reader.result);
+      };
+      reader.onerror = function() {
+        reject(reader.error);
+      };
+    })
+  }
+
+  function readBlobAsArrayBuffer(blob) {
+    var reader = new FileReader();
+    var promise = fileReaderReady(reader);
+    reader.readAsArrayBuffer(blob);
+    return promise
+  }
+
+  function readBlobAsText(blob) {
+    var reader = new FileReader();
+    var promise = fileReaderReady(reader);
+    reader.readAsText(blob);
+    return promise
+  }
+
+  function readArrayBufferAsText(buf) {
+    var view = new Uint8Array(buf);
+    var chars = new Array(view.length);
+
+    for (var i = 0; i < view.length; i++) {
+      chars[i] = String.fromCharCode(view[i]);
+    }
+    return chars.join('')
+  }
+
+  function bufferClone(buf) {
+    if (buf.slice) {
+      return buf.slice(0)
+    } else {
+      var view = new Uint8Array(buf.byteLength);
+      view.set(new Uint8Array(buf));
+      return view.buffer
+    }
+  }
+
+  function Body() {
+    this.bodyUsed = false;
+
+    this._initBody = function(body) {
+      this._bodyInit = body;
+      if (!body) {
+        this._bodyText = '';
+      } else if (typeof body === 'string') {
+        this._bodyText = body;
+      } else if (support.blob && Blob.prototype.isPrototypeOf(body)) {
+        this._bodyBlob = body;
+      } else if (support.formData && FormData.prototype.isPrototypeOf(body)) {
+        this._bodyFormData = body;
+      } else if (support.searchParams && URLSearchParams.prototype.isPrototypeOf(body)) {
+        this._bodyText = body.toString();
+      } else if (support.arrayBuffer && support.blob && isDataView(body)) {
+        this._bodyArrayBuffer = bufferClone(body.buffer);
+        // IE 10-11 can't handle a DataView body.
+        this._bodyInit = new Blob([this._bodyArrayBuffer]);
+      } else if (support.arrayBuffer && (ArrayBuffer.prototype.isPrototypeOf(body) || isArrayBufferView(body))) {
+        this._bodyArrayBuffer = bufferClone(body);
+      } else {
+        throw new Error('unsupported BodyInit type')
+      }
+
+      if (!this.headers.get('content-type')) {
+        if (typeof body === 'string') {
+          this.headers.set('content-type', 'text/plain;charset=UTF-8');
+        } else if (this._bodyBlob && this._bodyBlob.type) {
+          this.headers.set('content-type', this._bodyBlob.type);
+        } else if (support.searchParams && URLSearchParams.prototype.isPrototypeOf(body)) {
+          this.headers.set('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+        }
+      }
+    };
+
+    if (support.blob) {
+      this.blob = function() {
+        var rejected = consumed(this);
+        if (rejected) {
+          return rejected
+        }
+
+        if (this._bodyBlob) {
+          return Promise.resolve(this._bodyBlob)
+        } else if (this._bodyArrayBuffer) {
+          return Promise.resolve(new Blob([this._bodyArrayBuffer]))
+        } else if (this._bodyFormData) {
+          throw new Error('could not read FormData body as blob')
+        } else {
+          return Promise.resolve(new Blob([this._bodyText]))
+        }
+      };
+
+      this.arrayBuffer = function() {
+        if (this._bodyArrayBuffer) {
+          return consumed(this) || Promise.resolve(this._bodyArrayBuffer)
+        } else {
+          return this.blob().then(readBlobAsArrayBuffer)
+        }
+      };
+    }
+
+    this.text = function() {
+      var rejected = consumed(this);
+      if (rejected) {
+        return rejected
+      }
+
+      if (this._bodyBlob) {
+        return readBlobAsText(this._bodyBlob)
+      } else if (this._bodyArrayBuffer) {
+        return Promise.resolve(readArrayBufferAsText(this._bodyArrayBuffer))
+      } else if (this._bodyFormData) {
+        throw new Error('could not read FormData body as text')
+      } else {
+        return Promise.resolve(this._bodyText)
+      }
+    };
+
+    if (support.formData) {
+      this.formData = function() {
+        return this.text().then(decode)
+      };
+    }
+
+    this.json = function() {
+      return this.text().then(JSON.parse)
+    };
+
+    return this
+  }
+
+  // HTTP methods whose capitalization should be normalized
+  var methods = ['DELETE', 'GET', 'HEAD', 'OPTIONS', 'POST', 'PUT'];
+
+  function normalizeMethod(method) {
+    var upcased = method.toUpperCase();
+    return (methods.indexOf(upcased) > -1) ? upcased : method
+  }
+
+  function Request(input, options) {
+    options = options || {};
+    var body = options.body;
+
+    if (input instanceof Request) {
+      if (input.bodyUsed) {
+        throw new TypeError('Already read')
+      }
+      this.url = input.url;
+      this.credentials = input.credentials;
+      if (!options.headers) {
+        this.headers = new Headers(input.headers);
+      }
+      this.method = input.method;
+      this.mode = input.mode;
+      if (!body && input._bodyInit != null) {
+        body = input._bodyInit;
+        input.bodyUsed = true;
+      }
+    } else {
+      this.url = String(input);
+    }
+
+    this.credentials = options.credentials || this.credentials || 'omit';
+    if (options.headers || !this.headers) {
+      this.headers = new Headers(options.headers);
+    }
+    this.method = normalizeMethod(options.method || this.method || 'GET');
+    this.mode = options.mode || this.mode || null;
+    this.referrer = null;
+
+    if ((this.method === 'GET' || this.method === 'HEAD') && body) {
+      throw new TypeError('Body not allowed for GET or HEAD requests')
+    }
+    this._initBody(body);
+  }
+
+  Request.prototype.clone = function() {
+    return new Request(this, { body: this._bodyInit })
+  };
+
+  function decode(body) {
+    var form = new FormData();
+    body.trim().split('&').forEach(function(bytes) {
+      if (bytes) {
+        var split = bytes.split('=');
+        var name = split.shift().replace(/\+/g, ' ');
+        var value = split.join('=').replace(/\+/g, ' ');
+        form.append(decodeURIComponent(name), decodeURIComponent(value));
+      }
+    });
+    return form
+  }
+
+  function parseHeaders(rawHeaders) {
+    var headers = new Headers();
+    // Replace instances of \r\n and \n followed by at least one space or horizontal tab with a space
+    // https://tools.ietf.org/html/rfc7230#section-3.2
+    var preProcessedHeaders = rawHeaders.replace(/\r?\n[\t ]+/g, ' ');
+    preProcessedHeaders.split(/\r?\n/).forEach(function(line) {
+      var parts = line.split(':');
+      var key = parts.shift().trim();
+      if (key) {
+        var value = parts.join(':').trim();
+        headers.append(key, value);
+      }
+    });
+    return headers
+  }
+
+  Body.call(Request.prototype);
+
+  function Response(bodyInit, options) {
+    if (!options) {
+      options = {};
+    }
+
+    this.type = 'default';
+    this.status = options.status === undefined ? 200 : options.status;
+    this.ok = this.status >= 200 && this.status < 300;
+    this.statusText = 'statusText' in options ? options.statusText : 'OK';
+    this.headers = new Headers(options.headers);
+    this.url = options.url || '';
+    this._initBody(bodyInit);
+  }
+
+  Body.call(Response.prototype);
+
+  Response.prototype.clone = function() {
+    return new Response(this._bodyInit, {
+      status: this.status,
+      statusText: this.statusText,
+      headers: new Headers(this.headers),
+      url: this.url
+    })
+  };
+
+  Response.error = function() {
+    var response = new Response(null, {status: 0, statusText: ''});
+    response.type = 'error';
+    return response
+  };
+
+  var redirectStatuses = [301, 302, 303, 307, 308];
+
+  Response.redirect = function(url, status) {
+    if (redirectStatuses.indexOf(status) === -1) {
+      throw new RangeError('Invalid status code')
+    }
+
+    return new Response(null, {status: status, headers: {location: url}})
+  };
+
+  self.Headers = Headers;
+  self.Request = Request;
+  self.Response = Response;
+
+  self.fetch = function(input, init) {
+    return new Promise(function(resolve, reject) {
+      var request = new Request(input, init);
+      var xhr = new XMLHttpRequest();
+
+      xhr.onload = function() {
+        var options = {
+          status: xhr.status,
+          statusText: xhr.statusText,
+          headers: parseHeaders(xhr.getAllResponseHeaders() || '')
+        };
+        options.url = 'responseURL' in xhr ? xhr.responseURL : options.headers.get('X-Request-URL');
+        var body = 'response' in xhr ? xhr.response : xhr.responseText;
+        resolve(new Response(body, options));
+      };
+
+      xhr.onerror = function() {
+        reject(new TypeError('Network request failed'));
+      };
+
+      xhr.ontimeout = function() {
+        reject(new TypeError('Network request failed'));
+      };
+
+      xhr.open(request.method, request.url, true);
+
+      if (request.credentials === 'include') {
+        xhr.withCredentials = true;
+      } else if (request.credentials === 'omit') {
+        xhr.withCredentials = false;
+      }
+
+      if ('responseType' in xhr && support.blob) {
+        xhr.responseType = 'blob';
+      }
+
+      request.headers.forEach(function(value, name) {
+        xhr.setRequestHeader(name, value);
+      });
+
+      xhr.send(typeof request._bodyInit === 'undefined' ? null : request._bodyInit);
+    })
+  };
+  self.fetch.polyfill = true;
+})(typeof self !== 'undefined' ? self : undefined);
+
+// Store setTimeout reference so promise-polyfill will be unaffected by
+// other code modifying setTimeout (like sinon.useFakeTimers())
+var setTimeoutFunc = setTimeout;
+
+function noop() {}
+
+// Polyfill for Function.prototype.bind
+function bind(fn, thisArg) {
+  return function() {
+    fn.apply(thisArg, arguments);
+  };
+}
+
+function Promise$1(fn) {
+  if (!(this instanceof Promise$1))
+    throw new TypeError('Promises must be constructed via new');
+  if (typeof fn !== 'function') throw new TypeError('not a function');
+  this._state = 0;
+  this._handled = false;
+  this._value = undefined;
+  this._deferreds = [];
+
+  doResolve(fn, this);
+}
+
+function handle(self, deferred) {
+  while (self._state === 3) {
+    self = self._value;
+  }
+  if (self._state === 0) {
+    self._deferreds.push(deferred);
+    return;
+  }
+  self._handled = true;
+  Promise$1._immediateFn(function() {
+    var cb = self._state === 1 ? deferred.onFulfilled : deferred.onRejected;
+    if (cb === null) {
+      (self._state === 1 ? resolve : reject)(deferred.promise, self._value);
+      return;
+    }
+    var ret;
+    try {
+      ret = cb(self._value);
+    } catch (e) {
+      reject(deferred.promise, e);
+      return;
+    }
+    resolve(deferred.promise, ret);
+  });
+}
+
+function resolve(self, newValue) {
+  try {
+    // Promise Resolution Procedure: https://github.com/promises-aplus/promises-spec#the-promise-resolution-procedure
+    if (newValue === self)
+      throw new TypeError('A promise cannot be resolved with itself.');
+    if (
+      newValue &&
+      (typeof newValue === 'object' || typeof newValue === 'function')
+    ) {
+      var then = newValue.then;
+      if (newValue instanceof Promise$1) {
+        self._state = 3;
+        self._value = newValue;
+        finale(self);
+        return;
+      } else if (typeof then === 'function') {
+        doResolve(bind(then, newValue), self);
+        return;
+      }
+    }
+    self._state = 1;
+    self._value = newValue;
+    finale(self);
+  } catch (e) {
+    reject(self, e);
+  }
+}
+
+function reject(self, newValue) {
+  self._state = 2;
+  self._value = newValue;
+  finale(self);
+}
+
+function finale(self) {
+  if (self._state === 2 && self._deferreds.length === 0) {
+    Promise$1._immediateFn(function() {
+      if (!self._handled) {
+        Promise$1._unhandledRejectionFn(self._value);
+      }
+    });
+  }
+
+  for (var i = 0, len = self._deferreds.length; i < len; i++) {
+    handle(self, self._deferreds[i]);
+  }
+  self._deferreds = null;
+}
+
+function Handler(onFulfilled, onRejected, promise) {
+  this.onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : null;
+  this.onRejected = typeof onRejected === 'function' ? onRejected : null;
+  this.promise = promise;
+}
+
+/**
+ * Take a potentially misbehaving resolver function and make sure
+ * onFulfilled and onRejected are only called once.
+ *
+ * Makes no guarantees about asynchrony.
+ */
+function doResolve(fn, self) {
+  var done = false;
+  try {
+    fn(
+      function(value) {
+        if (done) return;
+        done = true;
+        resolve(self, value);
+      },
+      function(reason) {
+        if (done) return;
+        done = true;
+        reject(self, reason);
+      }
+    );
+  } catch (ex) {
+    if (done) return;
+    done = true;
+    reject(self, ex);
+  }
+}
+
+Promise$1.prototype['catch'] = function(onRejected) {
+  return this.then(null, onRejected);
+};
+
+Promise$1.prototype.then = function(onFulfilled, onRejected) {
+  var prom = new this.constructor(noop);
+
+  handle(this, new Handler(onFulfilled, onRejected, prom));
+  return prom;
+};
+
+Promise$1.prototype['finally'] = function(callback) {
+  var constructor = this.constructor;
+  return this.then(
+    function(value) {
+      return constructor.resolve(callback()).then(function() {
+        return value;
+      });
+    },
+    function(reason) {
+      return constructor.resolve(callback()).then(function() {
+        return constructor.reject(reason);
+      });
+    }
+  );
+};
+
+Promise$1.all = function(arr) {
+  return new Promise$1(function(resolve, reject) {
+    if (!arr || typeof arr.length === 'undefined')
+      throw new TypeError('Promise.all accepts an array');
+    var args = Array.prototype.slice.call(arr);
+    if (args.length === 0) return resolve([]);
+    var remaining = args.length;
+
+    function res(i, val) {
+      try {
+        if (val && (typeof val === 'object' || typeof val === 'function')) {
+          var then = val.then;
+          if (typeof then === 'function') {
+            then.call(
+              val,
+              function(val) {
+                res(i, val);
+              },
+              reject
+            );
+            return;
+          }
+        }
+        args[i] = val;
+        if (--remaining === 0) {
+          resolve(args);
+        }
+      } catch (ex) {
+        reject(ex);
+      }
+    }
+
+    for (var i = 0; i < args.length; i++) {
+      res(i, args[i]);
+    }
+  });
+};
+
+Promise$1.resolve = function(value) {
+  if (value && typeof value === 'object' && value.constructor === Promise$1) {
+    return value;
+  }
+
+  return new Promise$1(function(resolve) {
+    resolve(value);
+  });
+};
+
+Promise$1.reject = function(value) {
+  return new Promise$1(function(resolve, reject) {
+    reject(value);
+  });
+};
+
+Promise$1.race = function(values) {
+  return new Promise$1(function(resolve, reject) {
+    for (var i = 0, len = values.length; i < len; i++) {
+      values[i].then(resolve, reject);
+    }
+  });
+};
+
+// Use polyfill for setImmediate for performance gains
+Promise$1._immediateFn =
+  (typeof setImmediate === 'function' &&
+    function(fn) {
+      setImmediate(fn);
+    }) ||
+  function(fn) {
+    setTimeoutFunc(fn, 0);
+  };
+
+Promise$1._unhandledRejectionFn = function _unhandledRejectionFn(err) {
+  if (typeof console !== 'undefined' && console) {
+    console.warn('Possible Unhandled Promise Rejection:', err); // eslint-disable-line no-console
+  }
+};
+
+var globalNS = (function() {
+  // the only reliable means to get the global object is
+  // `Function('return this')()`
+  // However, this causes CSP violations in Chrome apps.
+  if (typeof self !== 'undefined') {
+    return self;
+  }
+  if (typeof window !== 'undefined') {
+    return window;
+  }
+  if (typeof global$1 !== 'undefined') {
+    return global$1;
+  }
+  throw new Error('unable to locate global object');
+})();
+
+if (!globalNS.Promise) {
+  globalNS.Promise = Promise$1;
+}
+
+function createCommonjsModule(fn, module) {
+	return module = { exports: {} }, fn(module, module.exports), module.exports;
+}
+
+var _global = createCommonjsModule(function (module) {
+// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
+var global = module.exports = typeof window != 'undefined' && window.Math == Math
+  ? window : typeof self != 'undefined' && self.Math == Math ? self
+  // eslint-disable-next-line no-new-func
+  : Function('return this')();
+if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
+});
+
+var _core = createCommonjsModule(function (module) {
+var core = module.exports = { version: '2.5.5' };
+if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
+});
+var _core_1 = _core.version;
+
+var _isObject = function (it) {
+  return typeof it === 'object' ? it !== null : typeof it === 'function';
+};
+
+var _anObject = function (it) {
+  if (!_isObject(it)) throw TypeError(it + ' is not an object!');
+  return it;
+};
+
+var _fails = function (exec) {
+  try {
+    return !!exec();
+  } catch (e) {
+    return true;
+  }
+};
+
+// Thank's IE8 for his funny defineProperty
+var _descriptors = !_fails(function () {
+  return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
+});
+
+var document$1 = _global.document;
+// typeof document.createElement is 'object' in old IE
+var is = _isObject(document$1) && _isObject(document$1.createElement);
+var _domCreate = function (it) {
+  return is ? document$1.createElement(it) : {};
+};
+
+var _ie8DomDefine = !_descriptors && !_fails(function () {
+  return Object.defineProperty(_domCreate('div'), 'a', { get: function () { return 7; } }).a != 7;
+});
+
+// 7.1.1 ToPrimitive(input [, PreferredType])
+
+// instead of the ES6 spec version, we didn't implement @@toPrimitive case
+// and the second argument - flag - preferred type is a string
+var _toPrimitive = function (it, S) {
+  if (!_isObject(it)) return it;
+  var fn, val;
+  if (S && typeof (fn = it.toString) == 'function' && !_isObject(val = fn.call(it))) return val;
+  if (typeof (fn = it.valueOf) == 'function' && !_isObject(val = fn.call(it))) return val;
+  if (!S && typeof (fn = it.toString) == 'function' && !_isObject(val = fn.call(it))) return val;
+  throw TypeError("Can't convert object to primitive value");
+};
+
+var dP = Object.defineProperty;
+
+var f = _descriptors ? Object.defineProperty : function defineProperty(O, P, Attributes) {
+  _anObject(O);
+  P = _toPrimitive(P, true);
+  _anObject(Attributes);
+  if (_ie8DomDefine) try {
+    return dP(O, P, Attributes);
+  } catch (e) { /* empty */ }
+  if ('get' in Attributes || 'set' in Attributes) throw TypeError('Accessors not supported!');
+  if ('value' in Attributes) O[P] = Attributes.value;
+  return O;
+};
+
+var _objectDp = {
+	f: f
+};
+
+var _propertyDesc = function (bitmap, value) {
+  return {
+    enumerable: !(bitmap & 1),
+    configurable: !(bitmap & 2),
+    writable: !(bitmap & 4),
+    value: value
+  };
+};
+
+var _hide = _descriptors ? function (object, key, value) {
+  return _objectDp.f(object, key, _propertyDesc(1, value));
+} : function (object, key, value) {
+  object[key] = value;
+  return object;
+};
+
+var hasOwnProperty = {}.hasOwnProperty;
+var _has = function (it, key) {
+  return hasOwnProperty.call(it, key);
+};
+
+var id = 0;
+var px = Math.random();
+var _uid = function (key) {
+  return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
+};
+
+var _redefine = createCommonjsModule(function (module) {
+var SRC = _uid('src');
+var TO_STRING = 'toString';
+var $toString = Function[TO_STRING];
+var TPL = ('' + $toString).split(TO_STRING);
+
+_core.inspectSource = function (it) {
+  return $toString.call(it);
+};
+
+(module.exports = function (O, key, val, safe) {
+  var isFunction = typeof val == 'function';
+  if (isFunction) _has(val, 'name') || _hide(val, 'name', key);
+  if (O[key] === val) return;
+  if (isFunction) _has(val, SRC) || _hide(val, SRC, O[key] ? '' + O[key] : TPL.join(String(key)));
+  if (O === _global) {
+    O[key] = val;
+  } else if (!safe) {
+    delete O[key];
+    _hide(O, key, val);
+  } else if (O[key]) {
+    O[key] = val;
+  } else {
+    _hide(O, key, val);
+  }
+// add fake Function#toString for correct work wrapped methods / constructors with methods like LoDash isNative
+})(Function.prototype, TO_STRING, function toString() {
+  return typeof this == 'function' && this[SRC] || $toString.call(this);
+});
+});
+
+var _aFunction = function (it) {
+  if (typeof it != 'function') throw TypeError(it + ' is not a function!');
+  return it;
+};
+
+// optional / simple context binding
+
+var _ctx = function (fn, that, length) {
+  _aFunction(fn);
+  if (that === undefined) return fn;
+  switch (length) {
+    case 1: return function (a) {
+      return fn.call(that, a);
+    };
+    case 2: return function (a, b) {
+      return fn.call(that, a, b);
+    };
+    case 3: return function (a, b, c) {
+      return fn.call(that, a, b, c);
+    };
+  }
+  return function (/* ...args */) {
+    return fn.apply(that, arguments);
+  };
+};
+
+var PROTOTYPE = 'prototype';
+
+var $export = function (type, name, source) {
+  var IS_FORCED = type & $export.F;
+  var IS_GLOBAL = type & $export.G;
+  var IS_STATIC = type & $export.S;
+  var IS_PROTO = type & $export.P;
+  var IS_BIND = type & $export.B;
+  var target = IS_GLOBAL ? _global : IS_STATIC ? _global[name] || (_global[name] = {}) : (_global[name] || {})[PROTOTYPE];
+  var exports = IS_GLOBAL ? _core : _core[name] || (_core[name] = {});
+  var expProto = exports[PROTOTYPE] || (exports[PROTOTYPE] = {});
+  var key, own, out, exp;
+  if (IS_GLOBAL) source = name;
+  for (key in source) {
+    // contains in native
+    own = !IS_FORCED && target && target[key] !== undefined;
+    // export native or passed
+    out = (own ? target : source)[key];
+    // bind timers to global for call from export context
+    exp = IS_BIND && own ? _ctx(out, _global) : IS_PROTO && typeof out == 'function' ? _ctx(Function.call, out) : out;
+    // extend global
+    if (target) _redefine(target, key, out, type & $export.U);
+    // export
+    if (exports[key] != out) _hide(exports, key, exp);
+    if (IS_PROTO && expProto[key] != out) expProto[key] = out;
+  }
+};
+_global.core = _core;
+// type bitmap
+$export.F = 1;   // forced
+$export.G = 2;   // global
+$export.S = 4;   // static
+$export.P = 8;   // proto
+$export.B = 16;  // bind
+$export.W = 32;  // wrap
+$export.U = 64;  // safe
+$export.R = 128; // real proto method for `library`
+var _export = $export;
+
+var toString = {}.toString;
+
+var _cof = function (it) {
+  return toString.call(it).slice(8, -1);
+};
+
+// fallback for non-array-like ES3 and non-enumerable old V8 strings
+
+// eslint-disable-next-line no-prototype-builtins
+var _iobject = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
+  return _cof(it) == 'String' ? it.split('') : Object(it);
+};
+
+// 7.2.1 RequireObjectCoercible(argument)
+var _defined = function (it) {
+  if (it == undefined) throw TypeError("Can't call method on  " + it);
+  return it;
+};
+
+// 7.1.13 ToObject(argument)
+
+var _toObject = function (it) {
+  return Object(_defined(it));
+};
+
+// 7.1.4 ToInteger
+var ceil = Math.ceil;
+var floor = Math.floor;
+var _toInteger = function (it) {
+  return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
+};
+
+// 7.1.15 ToLength
+
+var min = Math.min;
+var _toLength = function (it) {
+  return it > 0 ? min(_toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
+};
+
+// 7.2.2 IsArray(argument)
+
+var _isArray = Array.isArray || function isArray(arg) {
+  return _cof(arg) == 'Array';
+};
+
+var SHARED = '__core-js_shared__';
+var store = _global[SHARED] || (_global[SHARED] = {});
+var _shared = function (key) {
+  return store[key] || (store[key] = {});
+};
+
+var _wks = createCommonjsModule(function (module) {
+var store = _shared('wks');
+
+var Symbol = _global.Symbol;
+var USE_SYMBOL = typeof Symbol == 'function';
+
+var $exports = module.exports = function (name) {
+  return store[name] || (store[name] =
+    USE_SYMBOL && Symbol[name] || (USE_SYMBOL ? Symbol : _uid)('Symbol.' + name));
+};
+
+$exports.store = store;
+});
+
+var SPECIES = _wks('species');
+
+var _arraySpeciesConstructor = function (original) {
+  var C;
+  if (_isArray(original)) {
+    C = original.constructor;
+    // cross-realm fallback
+    if (typeof C == 'function' && (C === Array || _isArray(C.prototype))) C = undefined;
+    if (_isObject(C)) {
+      C = C[SPECIES];
+      if (C === null) C = undefined;
+    }
+  } return C === undefined ? Array : C;
+};
+
+// 9.4.2.3 ArraySpeciesCreate(originalArray, length)
+
+
+var _arraySpeciesCreate = function (original, length) {
+  return new (_arraySpeciesConstructor(original))(length);
+};
+
+// 0 -> Array#forEach
+// 1 -> Array#map
+// 2 -> Array#filter
+// 3 -> Array#some
+// 4 -> Array#every
+// 5 -> Array#find
+// 6 -> Array#findIndex
+
+
+
+
+
+var _arrayMethods = function (TYPE, $create) {
+  var IS_MAP = TYPE == 1;
+  var IS_FILTER = TYPE == 2;
+  var IS_SOME = TYPE == 3;
+  var IS_EVERY = TYPE == 4;
+  var IS_FIND_INDEX = TYPE == 6;
+  var NO_HOLES = TYPE == 5 || IS_FIND_INDEX;
+  var create = $create || _arraySpeciesCreate;
+  return function ($this, callbackfn, that) {
+    var O = _toObject($this);
+    var self = _iobject(O);
+    var f = _ctx(callbackfn, that, 3);
+    var length = _toLength(self.length);
+    var index = 0;
+    var result = IS_MAP ? create($this, length) : IS_FILTER ? create($this, 0) : undefined;
+    var val, res;
+    for (;length > index; index++) if (NO_HOLES || index in self) {
+      val = self[index];
+      res = f(val, index, O);
+      if (TYPE) {
+        if (IS_MAP) result[index] = res;   // map
+        else if (res) switch (TYPE) {
+          case 3: return true;             // some
+          case 5: return val;              // find
+          case 6: return index;            // findIndex
+          case 2: result.push(val);        // filter
+        } else if (IS_EVERY) return false; // every
+      }
+    }
+    return IS_FIND_INDEX ? -1 : IS_SOME || IS_EVERY ? IS_EVERY : result;
+  };
+};
+
+// 22.1.3.31 Array.prototype[@@unscopables]
+var UNSCOPABLES = _wks('unscopables');
+var ArrayProto = Array.prototype;
+if (ArrayProto[UNSCOPABLES] == undefined) _hide(ArrayProto, UNSCOPABLES, {});
+var _addToUnscopables = function (key) {
+  ArrayProto[UNSCOPABLES][key] = true;
+};
+
+// 22.1.3.8 Array.prototype.find(predicate, thisArg = undefined)
+
+var $find = _arrayMethods(5);
+var KEY = 'find';
+var forced = true;
+// Shouldn't skip holes
+if (KEY in []) Array(1)[KEY](function () { forced = false; });
+_export(_export.P + _export.F * forced, 'Array', {
+  find: function find(callbackfn /* , that = undefined */) {
+    return $find(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+  }
+});
+_addToUnscopables(KEY);
+
+var find = _core.Array.find;
+
+// 22.1.3.9 Array.prototype.findIndex(predicate, thisArg = undefined)
+
+var $find$1 = _arrayMethods(6);
+var KEY$1 = 'findIndex';
+var forced$1 = true;
+// Shouldn't skip holes
+if (KEY$1 in []) Array(1)[KEY$1](function () { forced$1 = false; });
+_export(_export.P + _export.F * forced$1, 'Array', {
+  findIndex: function findIndex(callbackfn /* , that = undefined */) {
+    return $find$1(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+  }
+});
+_addToUnscopables(KEY$1);
+
+var findIndex = _core.Array.findIndex;
+
+// to indexed object, toObject with fallback for non-array-like ES3 strings
+
+
+var _toIobject = function (it) {
+  return _iobject(_defined(it));
+};
+
+var max = Math.max;
+var min$1 = Math.min;
+var _toAbsoluteIndex = function (index, length) {
+  index = _toInteger(index);
+  return index < 0 ? max(index + length, 0) : min$1(index, length);
+};
+
+// false -> Array#indexOf
+// true  -> Array#includes
+
+
+
+var _arrayIncludes = function (IS_INCLUDES) {
+  return function ($this, el, fromIndex) {
+    var O = _toIobject($this);
+    var length = _toLength(O.length);
+    var index = _toAbsoluteIndex(fromIndex, length);
+    var value;
+    // Array#includes uses SameValueZero equality algorithm
+    // eslint-disable-next-line no-self-compare
+    if (IS_INCLUDES && el != el) while (length > index) {
+      value = O[index++];
+      // eslint-disable-next-line no-self-compare
+      if (value != value) return true;
+    // Array#indexOf ignores holes, Array#includes - not
+    } else for (;length > index; index++) if (IS_INCLUDES || index in O) {
+      if (O[index] === el) return IS_INCLUDES || index || 0;
+    } return !IS_INCLUDES && -1;
+  };
+};
+
+var shared = _shared('keys');
+
+var _sharedKey = function (key) {
+  return shared[key] || (shared[key] = _uid(key));
+};
+
+var arrayIndexOf = _arrayIncludes(false);
+var IE_PROTO = _sharedKey('IE_PROTO');
+
+var _objectKeysInternal = function (object, names) {
+  var O = _toIobject(object);
+  var i = 0;
+  var result = [];
+  var key;
+  for (key in O) if (key != IE_PROTO) _has(O, key) && result.push(key);
+  // Don't enum bug & hidden keys
+  while (names.length > i) if (_has(O, key = names[i++])) {
+    ~arrayIndexOf(result, key) || result.push(key);
+  }
+  return result;
+};
+
+// IE 8- don't enum bug keys
+var _enumBugKeys = (
+  'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'
+).split(',');
+
+// 19.1.2.14 / 15.2.3.14 Object.keys(O)
+
+
+
+var _objectKeys = Object.keys || function keys(O) {
+  return _objectKeysInternal(O, _enumBugKeys);
+};
+
+var f$1 = Object.getOwnPropertySymbols;
+
+var _objectGops = {
+	f: f$1
+};
+
+var f$2 = {}.propertyIsEnumerable;
+
+var _objectPie = {
+	f: f$2
+};
+
+// 19.1.2.1 Object.assign(target, source, ...)
+
+
+
+
+
+var $assign = Object.assign;
+
+// should work with symbols and should have deterministic property order (V8 bug)
+var _objectAssign = !$assign || _fails(function () {
+  var A = {};
+  var B = {};
+  // eslint-disable-next-line no-undef
+  var S = Symbol();
+  var K = 'abcdefghijklmnopqrst';
+  A[S] = 7;
+  K.split('').forEach(function (k) { B[k] = k; });
+  return $assign({}, A)[S] != 7 || Object.keys($assign({}, B)).join('') != K;
+}) ? function assign(target, source) { // eslint-disable-line no-unused-vars
+  var T = _toObject(target);
+  var aLen = arguments.length;
+  var index = 1;
+  var getSymbols = _objectGops.f;
+  var isEnum = _objectPie.f;
+  while (aLen > index) {
+    var S = _iobject(arguments[index++]);
+    var keys = getSymbols ? _objectKeys(S).concat(getSymbols(S)) : _objectKeys(S);
+    var length = keys.length;
+    var j = 0;
+    var key;
+    while (length > j) if (isEnum.call(S, key = keys[j++])) T[key] = S[key];
+  } return T;
+} : $assign;
+
+// 19.1.3.1 Object.assign(target, source)
+
+
+_export(_export.S + _export.F, 'Object', { assign: _objectAssign });
+
+var assign = _core.Object.assign;
+
+// 7.2.8 IsRegExp(argument)
+
+
+var MATCH = _wks('match');
+var _isRegexp = function (it) {
+  var isRegExp;
+  return _isObject(it) && ((isRegExp = it[MATCH]) !== undefined ? !!isRegExp : _cof(it) == 'RegExp');
+};
+
+// helper for String#{startsWith, endsWith, includes}
+
+
+
+var _stringContext = function (that, searchString, NAME) {
+  if (_isRegexp(searchString)) throw TypeError('String#' + NAME + " doesn't accept regex!");
+  return String(_defined(that));
+};
+
+var MATCH$1 = _wks('match');
+var _failsIsRegexp = function (KEY) {
+  var re = /./;
+  try {
+    '/./'[KEY](re);
+  } catch (e) {
+    try {
+      re[MATCH$1] = false;
+      return !'/./'[KEY](re);
+    } catch (f) { /* empty */ }
+  } return true;
+};
+
+var STARTS_WITH = 'startsWith';
+var $startsWith = ''[STARTS_WITH];
+
+_export(_export.P + _export.F * _failsIsRegexp(STARTS_WITH), 'String', {
+  startsWith: function startsWith(searchString /* , position = 0 */) {
+    var that = _stringContext(this, searchString, STARTS_WITH);
+    var index = _toLength(Math.min(arguments.length > 1 ? arguments[1] : undefined, that.length));
+    var search = String(searchString);
+    return $startsWith
+      ? $startsWith.call(that, search, index)
+      : that.slice(index, index + search.length) === search;
+  }
+});
+
+var startsWith = _core.String.startsWith;
+
+var _stringRepeat = function repeat(count) {
+  var str = String(_defined(this));
+  var res = '';
+  var n = _toInteger(count);
+  if (n < 0 || n == Infinity) throw RangeError("Count can't be negative");
+  for (;n > 0; (n >>>= 1) && (str += str)) if (n & 1) res += str;
+  return res;
+};
+
+_export(_export.P, 'String', {
+  // 21.1.3.13 String.prototype.repeat(count)
+  repeat: _stringRepeat
+});
+
+var repeat = _core.String.repeat;
+
+var _meta = createCommonjsModule(function (module) {
+var META = _uid('meta');
+
+
+var setDesc = _objectDp.f;
+var id = 0;
+var isExtensible = Object.isExtensible || function () {
+  return true;
+};
+var FREEZE = !_fails(function () {
+  return isExtensible(Object.preventExtensions({}));
+});
+var setMeta = function (it) {
+  setDesc(it, META, { value: {
+    i: 'O' + ++id, // object ID
+    w: {}          // weak collections IDs
+  } });
+};
+var fastKey = function (it, create) {
+  // return primitive with prefix
+  if (!_isObject(it)) return typeof it == 'symbol' ? it : (typeof it == 'string' ? 'S' : 'P') + it;
+  if (!_has(it, META)) {
+    // can't set metadata to uncaught frozen object
+    if (!isExtensible(it)) return 'F';
+    // not necessary to add metadata
+    if (!create) return 'E';
+    // add missing metadata
+    setMeta(it);
+  // return object ID
+  } return it[META].i;
+};
+var getWeak = function (it, create) {
+  if (!_has(it, META)) {
+    // can't set metadata to uncaught frozen object
+    if (!isExtensible(it)) return true;
+    // not necessary to add metadata
+    if (!create) return false;
+    // add missing metadata
+    setMeta(it);
+  // return hash weak collections IDs
+  } return it[META].w;
+};
+// add metadata on freeze-family methods calling
+var onFreeze = function (it) {
+  if (FREEZE && meta.NEED && isExtensible(it) && !_has(it, META)) setMeta(it);
+  return it;
+};
+var meta = module.exports = {
+  KEY: META,
+  NEED: false,
+  fastKey: fastKey,
+  getWeak: getWeak,
+  onFreeze: onFreeze
+};
+});
+var _meta_1 = _meta.KEY;
+var _meta_2 = _meta.NEED;
+var _meta_3 = _meta.fastKey;
+var _meta_4 = _meta.getWeak;
+var _meta_5 = _meta.onFreeze;
+
+var def = _objectDp.f;
+
+var TAG = _wks('toStringTag');
+
+var _setToStringTag = function (it, tag, stat) {
+  if (it && !_has(it = stat ? it : it.prototype, TAG)) def(it, TAG, { configurable: true, value: tag });
+};
+
+var f$3 = _wks;
+
+var _wksExt = {
+	f: f$3
+};
+
+var _library = false;
+
+var defineProperty = _objectDp.f;
+var _wksDefine = function (name) {
+  var $Symbol = _core.Symbol || (_core.Symbol = _global.Symbol || {});
+  if (name.charAt(0) != '_' && !(name in $Symbol)) defineProperty($Symbol, name, { value: _wksExt.f(name) });
+};
+
+// all enumerable object keys, includes symbols
+
+
+
+var _enumKeys = function (it) {
+  var result = _objectKeys(it);
+  var getSymbols = _objectGops.f;
+  if (getSymbols) {
+    var symbols = getSymbols(it);
+    var isEnum = _objectPie.f;
+    var i = 0;
+    var key;
+    while (symbols.length > i) if (isEnum.call(it, key = symbols[i++])) result.push(key);
+  } return result;
+};
+
+var _objectDps = _descriptors ? Object.defineProperties : function defineProperties(O, Properties) {
+  _anObject(O);
+  var keys = _objectKeys(Properties);
+  var length = keys.length;
+  var i = 0;
+  var P;
+  while (length > i) _objectDp.f(O, P = keys[i++], Properties[P]);
+  return O;
+};
+
+var document$1$1 = _global.document;
+var _html = document$1$1 && document$1$1.documentElement;
+
+// 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
+
+
+
+var IE_PROTO$1 = _sharedKey('IE_PROTO');
+var Empty = function () { /* empty */ };
+var PROTOTYPE$1 = 'prototype';
+
+// Create object with fake `null` prototype: use iframe Object with cleared prototype
+var createDict = function () {
+  // Thrash, waste and sodomy: IE GC bug
+  var iframe = _domCreate('iframe');
+  var i = _enumBugKeys.length;
+  var lt = '<';
+  var gt = '>';
+  var iframeDocument;
+  iframe.style.display = 'none';
+  _html.appendChild(iframe);
+  iframe.src = 'javascript:'; // eslint-disable-line no-script-url
+  // createDict = iframe.contentWindow.Object;
+  // html.removeChild(iframe);
+  iframeDocument = iframe.contentWindow.document;
+  iframeDocument.open();
+  iframeDocument.write(lt + 'script' + gt + 'document.F=Object' + lt + '/script' + gt);
+  iframeDocument.close();
+  createDict = iframeDocument.F;
+  while (i--) delete createDict[PROTOTYPE$1][_enumBugKeys[i]];
+  return createDict();
+};
+
+var _objectCreate = Object.create || function create(O, Properties) {
+  var result;
+  if (O !== null) {
+    Empty[PROTOTYPE$1] = _anObject(O);
+    result = new Empty();
+    Empty[PROTOTYPE$1] = null;
+    // add "__proto__" for Object.getPrototypeOf polyfill
+    result[IE_PROTO$1] = O;
+  } else result = createDict();
+  return Properties === undefined ? result : _objectDps(result, Properties);
+};
+
+// 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
+
+var hiddenKeys = _enumBugKeys.concat('length', 'prototype');
+
+var f$4 = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
+  return _objectKeysInternal(O, hiddenKeys);
+};
+
+var _objectGopn = {
+	f: f$4
+};
+
+// fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
+
+var gOPN = _objectGopn.f;
+var toString$1 = {}.toString;
+
+var windowNames = typeof window == 'object' && window && Object.getOwnPropertyNames
+  ? Object.getOwnPropertyNames(window) : [];
+
+var getWindowNames = function (it) {
+  try {
+    return gOPN(it);
+  } catch (e) {
+    return windowNames.slice();
+  }
+};
+
+var f$5 = function getOwnPropertyNames(it) {
+  return windowNames && toString$1.call(it) == '[object Window]' ? getWindowNames(it) : gOPN(_toIobject(it));
+};
+
+var _objectGopnExt = {
+	f: f$5
+};
+
+var gOPD = Object.getOwnPropertyDescriptor;
+
+var f$6 = _descriptors ? gOPD : function getOwnPropertyDescriptor(O, P) {
+  O = _toIobject(O);
+  P = _toPrimitive(P, true);
+  if (_ie8DomDefine) try {
+    return gOPD(O, P);
+  } catch (e) { /* empty */ }
+  if (_has(O, P)) return _propertyDesc(!_objectPie.f.call(O, P), O[P]);
+};
+
+var _objectGopd = {
+	f: f$6
+};
+
+// ECMAScript 6 symbols shim
+
+
+
+
+
+var META = _meta.KEY;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var gOPD$1 = _objectGopd.f;
+var dP$1 = _objectDp.f;
+var gOPN$1 = _objectGopnExt.f;
+var $Symbol = _global.Symbol;
+var $JSON = _global.JSON;
+var _stringify = $JSON && $JSON.stringify;
+var PROTOTYPE$2 = 'prototype';
+var HIDDEN = _wks('_hidden');
+var TO_PRIMITIVE = _wks('toPrimitive');
+var isEnum = {}.propertyIsEnumerable;
+var SymbolRegistry = _shared('symbol-registry');
+var AllSymbols = _shared('symbols');
+var OPSymbols = _shared('op-symbols');
+var ObjectProto = Object[PROTOTYPE$2];
+var USE_NATIVE = typeof $Symbol == 'function';
+var QObject = _global.QObject;
+// Don't use setters in Qt Script, https://github.com/zloirock/core-js/issues/173
+var setter = !QObject || !QObject[PROTOTYPE$2] || !QObject[PROTOTYPE$2].findChild;
+
+// fallback for old Android, https://code.google.com/p/v8/issues/detail?id=687
+var setSymbolDesc = _descriptors && _fails(function () {
+  return _objectCreate(dP$1({}, 'a', {
+    get: function () { return dP$1(this, 'a', { value: 7 }).a; }
+  })).a != 7;
+}) ? function (it, key, D) {
+  var protoDesc = gOPD$1(ObjectProto, key);
+  if (protoDesc) delete ObjectProto[key];
+  dP$1(it, key, D);
+  if (protoDesc && it !== ObjectProto) dP$1(ObjectProto, key, protoDesc);
+} : dP$1;
+
+var wrap = function (tag) {
+  var sym = AllSymbols[tag] = _objectCreate($Symbol[PROTOTYPE$2]);
+  sym._k = tag;
+  return sym;
+};
+
+var isSymbol = USE_NATIVE && typeof $Symbol.iterator == 'symbol' ? function (it) {
+  return typeof it == 'symbol';
+} : function (it) {
+  return it instanceof $Symbol;
+};
+
+var $defineProperty = function defineProperty(it, key, D) {
+  if (it === ObjectProto) $defineProperty(OPSymbols, key, D);
+  _anObject(it);
+  key = _toPrimitive(key, true);
+  _anObject(D);
+  if (_has(AllSymbols, key)) {
+    if (!D.enumerable) {
+      if (!_has(it, HIDDEN)) dP$1(it, HIDDEN, _propertyDesc(1, {}));
+      it[HIDDEN][key] = true;
+    } else {
+      if (_has(it, HIDDEN) && it[HIDDEN][key]) it[HIDDEN][key] = false;
+      D = _objectCreate(D, { enumerable: _propertyDesc(0, false) });
+    } return setSymbolDesc(it, key, D);
+  } return dP$1(it, key, D);
+};
+var $defineProperties = function defineProperties(it, P) {
+  _anObject(it);
+  var keys = _enumKeys(P = _toIobject(P));
+  var i = 0;
+  var l = keys.length;
+  var key;
+  while (l > i) $defineProperty(it, key = keys[i++], P[key]);
+  return it;
+};
+var $create = function create(it, P) {
+  return P === undefined ? _objectCreate(it) : $defineProperties(_objectCreate(it), P);
+};
+var $propertyIsEnumerable = function propertyIsEnumerable(key) {
+  var E = isEnum.call(this, key = _toPrimitive(key, true));
+  if (this === ObjectProto && _has(AllSymbols, key) && !_has(OPSymbols, key)) return false;
+  return E || !_has(this, key) || !_has(AllSymbols, key) || _has(this, HIDDEN) && this[HIDDEN][key] ? E : true;
+};
+var $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(it, key) {
+  it = _toIobject(it);
+  key = _toPrimitive(key, true);
+  if (it === ObjectProto && _has(AllSymbols, key) && !_has(OPSymbols, key)) return;
+  var D = gOPD$1(it, key);
+  if (D && _has(AllSymbols, key) && !(_has(it, HIDDEN) && it[HIDDEN][key])) D.enumerable = true;
+  return D;
+};
+var $getOwnPropertyNames = function getOwnPropertyNames(it) {
+  var names = gOPN$1(_toIobject(it));
+  var result = [];
+  var i = 0;
+  var key;
+  while (names.length > i) {
+    if (!_has(AllSymbols, key = names[i++]) && key != HIDDEN && key != META) result.push(key);
+  } return result;
+};
+var $getOwnPropertySymbols = function getOwnPropertySymbols(it) {
+  var IS_OP = it === ObjectProto;
+  var names = gOPN$1(IS_OP ? OPSymbols : _toIobject(it));
+  var result = [];
+  var i = 0;
+  var key;
+  while (names.length > i) {
+    if (_has(AllSymbols, key = names[i++]) && (IS_OP ? _has(ObjectProto, key) : true)) result.push(AllSymbols[key]);
+  } return result;
+};
+
+// 19.4.1.1 Symbol([description])
+if (!USE_NATIVE) {
+  $Symbol = function Symbol() {
+    if (this instanceof $Symbol) throw TypeError('Symbol is not a constructor!');
+    var tag = _uid(arguments.length > 0 ? arguments[0] : undefined);
+    var $set = function (value) {
+      if (this === ObjectProto) $set.call(OPSymbols, value);
+      if (_has(this, HIDDEN) && _has(this[HIDDEN], tag)) this[HIDDEN][tag] = false;
+      setSymbolDesc(this, tag, _propertyDesc(1, value));
+    };
+    if (_descriptors && setter) setSymbolDesc(ObjectProto, tag, { configurable: true, set: $set });
+    return wrap(tag);
+  };
+  _redefine($Symbol[PROTOTYPE$2], 'toString', function toString() {
+    return this._k;
+  });
+
+  _objectGopd.f = $getOwnPropertyDescriptor;
+  _objectDp.f = $defineProperty;
+  _objectGopn.f = _objectGopnExt.f = $getOwnPropertyNames;
+  _objectPie.f = $propertyIsEnumerable;
+  _objectGops.f = $getOwnPropertySymbols;
+
+  if (_descriptors && !_library) {
+    _redefine(ObjectProto, 'propertyIsEnumerable', $propertyIsEnumerable, true);
+  }
+
+  _wksExt.f = function (name) {
+    return wrap(_wks(name));
+  };
+}
+
+_export(_export.G + _export.W + _export.F * !USE_NATIVE, { Symbol: $Symbol });
+
+for (var es6Symbols = (
+  // 19.4.2.2, 19.4.2.3, 19.4.2.4, 19.4.2.6, 19.4.2.8, 19.4.2.9, 19.4.2.10, 19.4.2.11, 19.4.2.12, 19.4.2.13, 19.4.2.14
+  'hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables'
+).split(','), j = 0; es6Symbols.length > j;)_wks(es6Symbols[j++]);
+
+for (var wellKnownSymbols = _objectKeys(_wks.store), k = 0; wellKnownSymbols.length > k;) _wksDefine(wellKnownSymbols[k++]);
+
+_export(_export.S + _export.F * !USE_NATIVE, 'Symbol', {
+  // 19.4.2.1 Symbol.for(key)
+  'for': function (key) {
+    return _has(SymbolRegistry, key += '')
+      ? SymbolRegistry[key]
+      : SymbolRegistry[key] = $Symbol(key);
+  },
+  // 19.4.2.5 Symbol.keyFor(sym)
+  keyFor: function keyFor(sym) {
+    if (!isSymbol(sym)) throw TypeError(sym + ' is not a symbol!');
+    for (var key in SymbolRegistry) if (SymbolRegistry[key] === sym) return key;
+  },
+  useSetter: function () { setter = true; },
+  useSimple: function () { setter = false; }
+});
+
+_export(_export.S + _export.F * !USE_NATIVE, 'Object', {
+  // 19.1.2.2 Object.create(O [, Properties])
+  create: $create,
+  // 19.1.2.4 Object.defineProperty(O, P, Attributes)
+  defineProperty: $defineProperty,
+  // 19.1.2.3 Object.defineProperties(O, Properties)
+  defineProperties: $defineProperties,
+  // 19.1.2.6 Object.getOwnPropertyDescriptor(O, P)
+  getOwnPropertyDescriptor: $getOwnPropertyDescriptor,
+  // 19.1.2.7 Object.getOwnPropertyNames(O)
+  getOwnPropertyNames: $getOwnPropertyNames,
+  // 19.1.2.8 Object.getOwnPropertySymbols(O)
+  getOwnPropertySymbols: $getOwnPropertySymbols
+});
+
+// 24.3.2 JSON.stringify(value [, replacer [, space]])
+$JSON && _export(_export.S + _export.F * (!USE_NATIVE || _fails(function () {
+  var S = $Symbol();
+  // MS Edge converts symbol values to JSON as {}
+  // WebKit converts symbol values to JSON as null
+  // V8 throws on boxed symbols
+  return _stringify([S]) != '[null]' || _stringify({ a: S }) != '{}' || _stringify(Object(S)) != '{}';
+})), 'JSON', {
+  stringify: function stringify(it) {
+    var args = [it];
+    var i = 1;
+    var replacer, $replacer;
+    while (arguments.length > i) args.push(arguments[i++]);
+    $replacer = replacer = args[1];
+    if (!_isObject(replacer) && it === undefined || isSymbol(it)) return; // IE8 returns string on undefined
+    if (!_isArray(replacer)) replacer = function (key, value) {
+      if (typeof $replacer == 'function') value = $replacer.call(this, key, value);
+      if (!isSymbol(value)) return value;
+    };
+    args[1] = replacer;
+    return _stringify.apply($JSON, args);
+  }
+});
+
+// 19.4.3.4 Symbol.prototype[@@toPrimitive](hint)
+$Symbol[PROTOTYPE$2][TO_PRIMITIVE] || _hide($Symbol[PROTOTYPE$2], TO_PRIMITIVE, $Symbol[PROTOTYPE$2].valueOf);
+// 19.4.3.5 Symbol.prototype[@@toStringTag]
+_setToStringTag($Symbol, 'Symbol');
+// 20.2.1.9 Math[@@toStringTag]
+_setToStringTag(Math, 'Math', true);
+// 24.3.3 JSON[@@toStringTag]
+_setToStringTag(_global.JSON, 'JSON', true);
+
+// getting tag from 19.1.3.6 Object.prototype.toString()
+
+var TAG$1 = _wks('toStringTag');
+// ES3 wrong here
+var ARG = _cof(function () { return arguments; }()) == 'Arguments';
+
+// fallback for IE11 Script Access Denied error
+var tryGet = function (it, key) {
+  try {
+    return it[key];
+  } catch (e) { /* empty */ }
+};
+
+var _classof = function (it) {
+  var O, T, B;
+  return it === undefined ? 'Undefined' : it === null ? 'Null'
+    // @@toStringTag case
+    : typeof (T = tryGet(O = Object(it), TAG$1)) == 'string' ? T
+    // builtinTag case
+    : ARG ? _cof(O)
+    // ES3 arguments fallback
+    : (B = _cof(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : B;
+};
+
+// 19.1.3.6 Object.prototype.toString()
+
+var test = {};
+test[_wks('toStringTag')] = 'z';
+if (test + '' != '[object z]') {
+  _redefine(Object.prototype, 'toString', function toString() {
+    return '[object ' + _classof(this) + ']';
+  }, true);
+}
+
+_wksDefine('asyncIterator');
+
+_wksDefine('observable');
+
+var symbol = _core.Symbol;
+
+// true  -> String#at
+// false -> String#codePointAt
+var _stringAt = function (TO_STRING) {
+  return function (that, pos) {
+    var s = String(_defined(that));
+    var i = _toInteger(pos);
+    var l = s.length;
+    var a, b;
+    if (i < 0 || i >= l) return TO_STRING ? '' : undefined;
+    a = s.charCodeAt(i);
+    return a < 0xd800 || a > 0xdbff || i + 1 === l || (b = s.charCodeAt(i + 1)) < 0xdc00 || b > 0xdfff
+      ? TO_STRING ? s.charAt(i) : a
+      : TO_STRING ? s.slice(i, i + 2) : (a - 0xd800 << 10) + (b - 0xdc00) + 0x10000;
+  };
+};
+
+var _iterators = {};
+
+var IteratorPrototype = {};
+
+// 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
+_hide(IteratorPrototype, _wks('iterator'), function () { return this; });
+
+var _iterCreate = function (Constructor, NAME, next) {
+  Constructor.prototype = _objectCreate(IteratorPrototype, { next: _propertyDesc(1, next) });
+  _setToStringTag(Constructor, NAME + ' Iterator');
+};
+
+// 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
+
+
+var IE_PROTO$2 = _sharedKey('IE_PROTO');
+var ObjectProto$1 = Object.prototype;
+
+var _objectGpo = Object.getPrototypeOf || function (O) {
+  O = _toObject(O);
+  if (_has(O, IE_PROTO$2)) return O[IE_PROTO$2];
+  if (typeof O.constructor == 'function' && O instanceof O.constructor) {
+    return O.constructor.prototype;
+  } return O instanceof Object ? ObjectProto$1 : null;
+};
+
+var ITERATOR = _wks('iterator');
+var BUGGY = !([].keys && 'next' in [].keys()); // Safari has buggy iterators w/o `next`
+var FF_ITERATOR = '@@iterator';
+var KEYS = 'keys';
+var VALUES = 'values';
+
+var returnThis = function () { return this; };
+
+var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
+  _iterCreate(Constructor, NAME, next);
+  var getMethod = function (kind) {
+    if (!BUGGY && kind in proto) return proto[kind];
+    switch (kind) {
+      case KEYS: return function keys() { return new Constructor(this, kind); };
+      case VALUES: return function values() { return new Constructor(this, kind); };
+    } return function entries() { return new Constructor(this, kind); };
+  };
+  var TAG = NAME + ' Iterator';
+  var DEF_VALUES = DEFAULT == VALUES;
+  var VALUES_BUG = false;
+  var proto = Base.prototype;
+  var $native = proto[ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT];
+  var $default = $native || getMethod(DEFAULT);
+  var $entries = DEFAULT ? !DEF_VALUES ? $default : getMethod('entries') : undefined;
+  var $anyNative = NAME == 'Array' ? proto.entries || $native : $native;
+  var methods, key, IteratorPrototype;
+  // Fix native
+  if ($anyNative) {
+    IteratorPrototype = _objectGpo($anyNative.call(new Base()));
+    if (IteratorPrototype !== Object.prototype && IteratorPrototype.next) {
+      // Set @@toStringTag to native iterators
+      _setToStringTag(IteratorPrototype, TAG, true);
+      // fix for some old engines
+      if (typeof IteratorPrototype[ITERATOR] != 'function') _hide(IteratorPrototype, ITERATOR, returnThis);
+    }
+  }
+  // fix Array#{values, @@iterator}.name in V8 / FF
+  if (DEF_VALUES && $native && $native.name !== VALUES) {
+    VALUES_BUG = true;
+    $default = function values() { return $native.call(this); };
+  }
+  // Define iterator
+  if (BUGGY || VALUES_BUG || !proto[ITERATOR]) {
+    _hide(proto, ITERATOR, $default);
+  }
+  // Plug for library
+  _iterators[NAME] = $default;
+  _iterators[TAG] = returnThis;
+  if (DEFAULT) {
+    methods = {
+      values: DEF_VALUES ? $default : getMethod(VALUES),
+      keys: IS_SET ? $default : getMethod(KEYS),
+      entries: $entries
+    };
+    if (FORCED) for (key in methods) {
+      if (!(key in proto)) _redefine(proto, key, methods[key]);
+    } else _export(_export.P + _export.F * (BUGGY || VALUES_BUG), NAME, methods);
+  }
+  return methods;
+};
+
+var $at = _stringAt(true);
+
+// 21.1.3.27 String.prototype[@@iterator]()
+_iterDefine(String, 'String', function (iterated) {
+  this._t = String(iterated); // target
+  this._i = 0;                // next index
+// 21.1.5.2.1 %StringIteratorPrototype%.next()
+}, function () {
+  var O = this._t;
+  var index = this._i;
+  var point;
+  if (index >= O.length) return { value: undefined, done: true };
+  point = $at(O, index);
+  this._i += point.length;
+  return { value: point, done: false };
+});
+
+var _iterStep = function (done, value) {
+  return { value: value, done: !!done };
+};
+
+// 22.1.3.4 Array.prototype.entries()
+// 22.1.3.13 Array.prototype.keys()
+// 22.1.3.29 Array.prototype.values()
+// 22.1.3.30 Array.prototype[@@iterator]()
+var es6_array_iterator = _iterDefine(Array, 'Array', function (iterated, kind) {
+  this._t = _toIobject(iterated); // target
+  this._i = 0;                   // next index
+  this._k = kind;                // kind
+// 22.1.5.2.1 %ArrayIteratorPrototype%.next()
+}, function () {
+  var O = this._t;
+  var kind = this._k;
+  var index = this._i++;
+  if (!O || index >= O.length) {
+    this._t = undefined;
+    return _iterStep(1);
+  }
+  if (kind == 'keys') return _iterStep(0, index);
+  if (kind == 'values') return _iterStep(0, O[index]);
+  return _iterStep(0, [index, O[index]]);
+}, 'values');
+
+// argumentsList[@@iterator] is %ArrayProto_values% (9.4.4.6, 9.4.4.7)
+_iterators.Arguments = _iterators.Array;
+
+_addToUnscopables('keys');
+_addToUnscopables('values');
+_addToUnscopables('entries');
+
+var ITERATOR$1 = _wks('iterator');
+var TO_STRING_TAG = _wks('toStringTag');
+var ArrayValues = _iterators.Array;
+
+var DOMIterables = {
+  CSSRuleList: true, // TODO: Not spec compliant, should be false.
+  CSSStyleDeclaration: false,
+  CSSValueList: false,
+  ClientRectList: false,
+  DOMRectList: false,
+  DOMStringList: false,
+  DOMTokenList: true,
+  DataTransferItemList: false,
+  FileList: false,
+  HTMLAllCollection: false,
+  HTMLCollection: false,
+  HTMLFormElement: false,
+  HTMLSelectElement: false,
+  MediaList: true, // TODO: Not spec compliant, should be false.
+  MimeTypeArray: false,
+  NamedNodeMap: false,
+  NodeList: true,
+  PaintRequestList: false,
+  Plugin: false,
+  PluginArray: false,
+  SVGLengthList: false,
+  SVGNumberList: false,
+  SVGPathSegList: false,
+  SVGPointList: false,
+  SVGStringList: false,
+  SVGTransformList: false,
+  SourceBufferList: false,
+  StyleSheetList: true, // TODO: Not spec compliant, should be false.
+  TextTrackCueList: false,
+  TextTrackList: false,
+  TouchList: false
+};
+
+for (var collections = _objectKeys(DOMIterables), i = 0; i < collections.length; i++) {
+  var NAME = collections[i];
+  var explicit = DOMIterables[NAME];
+  var Collection = _global[NAME];
+  var proto = Collection && Collection.prototype;
+  var key;
+  if (proto) {
+    if (!proto[ITERATOR$1]) _hide(proto, ITERATOR$1, ArrayValues);
+    if (!proto[TO_STRING_TAG]) _hide(proto, TO_STRING_TAG, NAME);
+    _iterators[NAME] = ArrayValues;
+    if (explicit) for (key in es6_array_iterator) if (!proto[key]) _redefine(proto, key, es6_array_iterator[key], true);
+  }
+}
+
+var iterator = _wksExt.f('iterator');
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at http://www.apache.org/licenses/LICENSE-2.0
+
+THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+MERCHANTABLITY OR NON-INFRINGEMENT.
+
+See the Apache Version 2.0 License for specific language governing permissions
+and limitations under the License.
+***************************************************************************** */
+/* global Reflect, Promise */
+
+var extendStatics = Object.setPrototypeOf ||
+    ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+    function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+
+function __extends(d, b) {
+    extendStatics(d, b);
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+}
+
+var __assign = Object.assign || function __assign(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+    }
+    return t;
+};
+
+function __awaiter(thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+}
+
+function __generator(thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+}
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+ * @fileoverview Firebase constants.  Some of these (@defines) can be overridden at compile-time.
+ */
+var CONSTANTS = {
+    /**
+     * @define {boolean} Whether this is the client Node.js SDK.
+     */
+    NODE_CLIENT: false,
+    /**
+     * @define {boolean} Whether this is the Admin Node.js SDK.
+     */
+    NODE_ADMIN: false,
+    /**
+     * Firebase SDK Version
+     */
+    SDK_VERSION: '${JSCORE_VERSION}'
+};
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+ * Throws an error if the provided assertion is falsy
+ * @param {*} assertion The assertion to be tested for falsiness
+ * @param {!string} message The message to display if the check fails
+ */
+var assert = function (assertion, message) {
+    if (!assertion) {
+        throw assertionError(message);
+    }
+};
+/**
+ * Returns an Error object suitable for throwing.
+ * @param {string} message
+ * @return {!Error}
+ */
+var assertionError = function (message) {
+    return new Error('Firebase Database (' +
+        CONSTANTS.SDK_VERSION +
+        ') INTERNAL ASSERT FAILED: ' +
+        message);
+};
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var stringToByteArray = function (str) {
+    // TODO(user): Use native implementations if/when available
+    var out = [], p = 0;
+    for (var i = 0; i < str.length; i++) {
+        var c = str.charCodeAt(i);
+        if (c < 128) {
+            out[p++] = c;
+        }
+        else if (c < 2048) {
+            out[p++] = (c >> 6) | 192;
+            out[p++] = (c & 63) | 128;
+        }
+        else if ((c & 0xfc00) == 0xd800 &&
+            i + 1 < str.length &&
+            (str.charCodeAt(i + 1) & 0xfc00) == 0xdc00) {
+            // Surrogate Pair
+            c = 0x10000 + ((c & 0x03ff) << 10) + (str.charCodeAt(++i) & 0x03ff);
+            out[p++] = (c >> 18) | 240;
+            out[p++] = ((c >> 12) & 63) | 128;
+            out[p++] = ((c >> 6) & 63) | 128;
+            out[p++] = (c & 63) | 128;
+        }
+        else {
+            out[p++] = (c >> 12) | 224;
+            out[p++] = ((c >> 6) & 63) | 128;
+            out[p++] = (c & 63) | 128;
+        }
+    }
+    return out;
+};
+/**
+ * Turns an array of numbers into the string given by the concatenation of the
+ * characters to which the numbers correspond.
+ * @param {Array<number>} bytes Array of numbers representing characters.
+ * @return {string} Stringification of the array.
+ */
+var byteArrayToString = function (bytes) {
+    // TODO(user): Use native implementations if/when available
+    var out = [], pos = 0, c = 0;
+    while (pos < bytes.length) {
+        var c1 = bytes[pos++];
+        if (c1 < 128) {
+            out[c++] = String.fromCharCode(c1);
+        }
+        else if (c1 > 191 && c1 < 224) {
+            var c2 = bytes[pos++];
+            out[c++] = String.fromCharCode(((c1 & 31) << 6) | (c2 & 63));
+        }
+        else if (c1 > 239 && c1 < 365) {
+            // Surrogate Pair
+            var c2 = bytes[pos++];
+            var c3 = bytes[pos++];
+            var c4 = bytes[pos++];
+            var u = (((c1 & 7) << 18) | ((c2 & 63) << 12) | ((c3 & 63) << 6) | (c4 & 63)) -
+                0x10000;
+            out[c++] = String.fromCharCode(0xd800 + (u >> 10));
+            out[c++] = String.fromCharCode(0xdc00 + (u & 1023));
+        }
+        else {
+            var c2 = bytes[pos++];
+            var c3 = bytes[pos++];
+            out[c++] = String.fromCharCode(((c1 & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
+        }
+    }
+    return out.join('');
+};
+// Static lookup maps, lazily populated by init_()
+var base64 = {
+    /**
+     * Maps bytes to characters.
+     * @type {Object}
+     * @private
+     */
+    byteToCharMap_: null,
+    /**
+     * Maps characters to bytes.
+     * @type {Object}
+     * @private
+     */
+    charToByteMap_: null,
+    /**
+     * Maps bytes to websafe characters.
+     * @type {Object}
+     * @private
+     */
+    byteToCharMapWebSafe_: null,
+    /**
+     * Maps websafe characters to bytes.
+     * @type {Object}
+     * @private
+     */
+    charToByteMapWebSafe_: null,
+    /**
+     * Our default alphabet, shared between
+     * ENCODED_VALS and ENCODED_VALS_WEBSAFE
+     * @type {string}
+     */
+    ENCODED_VALS_BASE: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' + 'abcdefghijklmnopqrstuvwxyz' + '0123456789',
+    /**
+     * Our default alphabet. Value 64 (=) is special; it means "nothing."
+     * @type {string}
+     */
+    get ENCODED_VALS() {
+        return this.ENCODED_VALS_BASE + '+/=';
+    },
+    /**
+     * Our websafe alphabet.
+     * @type {string}
+     */
+    get ENCODED_VALS_WEBSAFE() {
+        return this.ENCODED_VALS_BASE + '-_.';
+    },
+    /**
+     * Whether this browser supports the atob and btoa functions. This extension
+     * started at Mozilla but is now implemented by many browsers. We use the
+     * ASSUME_* variables to avoid pulling in the full useragent detection library
+     * but still allowing the standard per-browser compilations.
+     *
+     * @type {boolean}
+     */
+    HAS_NATIVE_SUPPORT: typeof atob === 'function',
+    /**
+     * Base64-encode an array of bytes.
+     *
+     * @param {Array<number>|Uint8Array} input An array of bytes (numbers with
+     *     value in [0, 255]) to encode.
+     * @param {boolean=} opt_webSafe Boolean indicating we should use the
+     *     alternative alphabet.
+     * @return {string} The base64 encoded string.
+     */
+    encodeByteArray: function (input, opt_webSafe) {
+        if (!Array.isArray(input)) {
+            throw Error('encodeByteArray takes an array as a parameter');
+        }
+        this.init_();
+        var byteToCharMap = opt_webSafe
+            ? this.byteToCharMapWebSafe_
+            : this.byteToCharMap_;
+        var output = [];
+        for (var i = 0; i < input.length; i += 3) {
+            var byte1 = input[i];
+            var haveByte2 = i + 1 < input.length;
+            var byte2 = haveByte2 ? input[i + 1] : 0;
+            var haveByte3 = i + 2 < input.length;
+            var byte3 = haveByte3 ? input[i + 2] : 0;
+            var outByte1 = byte1 >> 2;
+            var outByte2 = ((byte1 & 0x03) << 4) | (byte2 >> 4);
+            var outByte3 = ((byte2 & 0x0f) << 2) | (byte3 >> 6);
+            var outByte4 = byte3 & 0x3f;
+            if (!haveByte3) {
+                outByte4 = 64;
+                if (!haveByte2) {
+                    outByte3 = 64;
+                }
+            }
+            output.push(byteToCharMap[outByte1], byteToCharMap[outByte2], byteToCharMap[outByte3], byteToCharMap[outByte4]);
+        }
+        return output.join('');
+    },
+    /**
+     * Base64-encode a string.
+     *
+     * @param {string} input A string to encode.
+     * @param {boolean=} opt_webSafe If true, we should use the
+     *     alternative alphabet.
+     * @return {string} The base64 encoded string.
+     */
+    encodeString: function (input, opt_webSafe) {
+        // Shortcut for Mozilla browsers that implement
+        // a native base64 encoder in the form of "btoa/atob"
+        if (this.HAS_NATIVE_SUPPORT && !opt_webSafe) {
+            return btoa(input);
+        }
+        return this.encodeByteArray(stringToByteArray(input), opt_webSafe);
+    },
+    /**
+     * Base64-decode a string.
+     *
+     * @param {string} input to decode.
+     * @param {boolean=} opt_webSafe True if we should use the
+     *     alternative alphabet.
+     * @return {string} string representing the decoded value.
+     */
+    decodeString: function (input, opt_webSafe) {
+        // Shortcut for Mozilla browsers that implement
+        // a native base64 encoder in the form of "btoa/atob"
+        if (this.HAS_NATIVE_SUPPORT && !opt_webSafe) {
+            return atob(input);
+        }
+        return byteArrayToString(this.decodeStringToByteArray(input, opt_webSafe));
+    },
+    /**
+     * Base64-decode a string.
+     *
+     * In base-64 decoding, groups of four characters are converted into three
+     * bytes.  If the encoder did not apply padding, the input length may not
+     * be a multiple of 4.
+     *
+     * In this case, the last group will have fewer than 4 characters, and
+     * padding will be inferred.  If the group has one or two characters, it decodes
+     * to one byte.  If the group has three characters, it decodes to two bytes.
+     *
+     * @param {string} input Input to decode.
+     * @param {boolean=} opt_webSafe True if we should use the web-safe alphabet.
+     * @return {!Array<number>} bytes representing the decoded value.
+     */
+    decodeStringToByteArray: function (input, opt_webSafe) {
+        this.init_();
+        var charToByteMap = opt_webSafe
+            ? this.charToByteMapWebSafe_
+            : this.charToByteMap_;
+        var output = [];
+        for (var i = 0; i < input.length;) {
+            var byte1 = charToByteMap[input.charAt(i++)];
+            var haveByte2 = i < input.length;
+            var byte2 = haveByte2 ? charToByteMap[input.charAt(i)] : 0;
+            ++i;
+            var haveByte3 = i < input.length;
+            var byte3 = haveByte3 ? charToByteMap[input.charAt(i)] : 64;
+            ++i;
+            var haveByte4 = i < input.length;
+            var byte4 = haveByte4 ? charToByteMap[input.charAt(i)] : 64;
+            ++i;
+            if (byte1 == null || byte2 == null || byte3 == null || byte4 == null) {
+                throw Error();
+            }
+            var outByte1 = (byte1 << 2) | (byte2 >> 4);
+            output.push(outByte1);
+            if (byte3 != 64) {
+                var outByte2 = ((byte2 << 4) & 0xf0) | (byte3 >> 2);
+                output.push(outByte2);
+                if (byte4 != 64) {
+                    var outByte3 = ((byte3 << 6) & 0xc0) | byte4;
+                    output.push(outByte3);
+                }
+            }
+        }
+        return output;
+    },
+    /**
+     * Lazy static initialization function. Called before
+     * accessing any of the static map variables.
+     * @private
+     */
+    init_: function () {
+        if (!this.byteToCharMap_) {
+            this.byteToCharMap_ = {};
+            this.charToByteMap_ = {};
+            this.byteToCharMapWebSafe_ = {};
+            this.charToByteMapWebSafe_ = {};
+            // We want quick mappings back and forth, so we precompute two maps.
+            for (var i = 0; i < this.ENCODED_VALS.length; i++) {
+                this.byteToCharMap_[i] = this.ENCODED_VALS.charAt(i);
+                this.charToByteMap_[this.byteToCharMap_[i]] = i;
+                this.byteToCharMapWebSafe_[i] = this.ENCODED_VALS_WEBSAFE.charAt(i);
+                this.charToByteMapWebSafe_[this.byteToCharMapWebSafe_[i]] = i;
+                // Be forgiving when decoding and correctly decode both encodings.
+                if (i >= this.ENCODED_VALS_BASE.length) {
+                    this.charToByteMap_[this.ENCODED_VALS_WEBSAFE.charAt(i)] = i;
+                    this.charToByteMapWebSafe_[this.ENCODED_VALS.charAt(i)] = i;
+                }
+            }
+        }
+    }
+};
+/**
+ * URL-safe base64 encoding
+ * @param {!string} str
+ * @return {!string}
+ */
+var base64Encode = function (str) {
+    var utf8Bytes = stringToByteArray(str);
+    return base64.encodeByteArray(utf8Bytes, true);
+};
+/**
+ * URL-safe base64 decoding
+ *
+ * NOTE: DO NOT use the global atob() function - it does NOT support the
+ * base64Url variant encoding.
+ *
+ * @param {string} str To be decoded
+ * @return {?string} Decoded result, if possible
+ */
+var base64Decode = function (str) {
+    try {
+        return base64.decodeString(str, true);
+    }
+    catch (e) {
+        console.error('base64Decode failed: ', e);
+    }
+    return null;
+};
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+ * Do a deep-copy of basic JavaScript Objects or Arrays.
+ */
+function deepCopy(value) {
+    return deepExtend(undefined, value);
+}
+/**
+ * Copy properties from source to target (recursively allows extension
+ * of Objects and Arrays).  Scalar values in the target are over-written.
+ * If target is undefined, an object of the appropriate type will be created
+ * (and returned).
+ *
+ * We recursively copy all child properties of plain Objects in the source- so
+ * that namespace- like dictionaries are merged.
+ *
+ * Note that the target can be a function, in which case the properties in
+ * the source Object are copied onto it as static properties of the Function.
+ */
+function deepExtend(target, source) {
+    if (!(source instanceof Object)) {
+        return source;
+    }
+    switch (source.constructor) {
+        case Date:
+            // Treat Dates like scalars; if the target date object had any child
+            // properties - they will be lost!
+            var dateValue = source;
+            return new Date(dateValue.getTime());
+        case Object:
+            if (target === undefined) {
+                target = {};
+            }
+            break;
+        case Array:
+            // Always copy the array source and overwrite the target.
+            target = [];
+            break;
+        default:
+            // Not a plain Object - treat it as a scalar.
+            return source;
+    }
+    for (var prop in source) {
+        if (!source.hasOwnProperty(prop)) {
+            continue;
+        }
+        target[prop] = deepExtend(target[prop], source[prop]);
+    }
+    return target;
+}
+// TODO: Really needed (for JSCompiler type checking)?
+function patchProperty(obj, prop, value) {
+    obj[prop] = value;
+}
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var Deferred = /** @class */ (function () {
+    function Deferred() {
+        var _this = this;
+        this.promise = new Promise(function (resolve, reject) {
+            _this.resolve = resolve;
+            _this.reject = reject;
+        });
+    }
+    /**
+     * Our API internals are not promiseified and cannot because our callback APIs have subtle expectations around
+     * invoking promises inline, which Promises are forbidden to do. This method accepts an optional node-style callback
+     * and returns a node-style callback which will resolve or reject the Deferred's promise.
+     * @param {((?function(?(Error)): (?|undefined))| (?function(?(Error),?=): (?|undefined)))=} callback
+     * @return {!function(?(Error), ?=)}
+     */
+    Deferred.prototype.wrapCallback = function (callback) {
+        var _this = this;
+        return function (error, value) {
+            if (error) {
+                _this.reject(error);
+            }
+            else {
+                _this.resolve(value);
+            }
+            if (typeof callback === 'function') {
+                // Attaching noop handler just in case developer wasn't expecting
+                // promises
+                _this.promise.catch(function () { });
+                // Some of our callbacks don't expect a value and our own tests
+                // assert that the parameter length is 1
+                if (callback.length === 1) {
+                    callback(error);
+                }
+                else {
+                    callback(error, value);
+                }
+            }
+        };
+    };
+    return Deferred;
+}());
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+ * Returns navigator.userAgent string or '' if it's not defined.
+ * @return {string} user agent string
+ */
+var getUA = function () {
+    if (typeof navigator !== 'undefined' &&
+        typeof navigator['userAgent'] === 'string') {
+        return navigator['userAgent'];
+    }
+    else {
+        return '';
+    }
+};
+/**
+ * Detect Cordova / PhoneGap / Ionic frameworks on a mobile device.
+ *
+ * Deliberately does not rely on checking `file://` URLs (as this fails PhoneGap in the Ripple emulator) nor
+ * Cordova `onDeviceReady`, which would normally wait for a callback.
+ *
+ * @return {boolean} isMobileCordova
+ */
+var isMobileCordova = function () {
+    return (typeof window !== 'undefined' &&
+        !!(window['cordova'] || window['phonegap'] || window['PhoneGap']) &&
+        /ios|iphone|ipod|ipad|android|blackberry|iemobile/i.test(getUA()));
+};
+/**
+ * Detect React Native.
+ *
+ * @return {boolean} True if ReactNative environment is detected.
+ */
+var isReactNative = function () {
+    return (typeof navigator === 'object' && navigator['product'] === 'ReactNative');
+};
+/**
+ * Detect Node.js.
+ *
+ * @return {boolean} True if Node.js environment is detected.
+ */
+var isNodeSdk = function () {
+    return CONSTANTS.NODE_ADMIN === true;
+};
+
+var ERROR_NAME = 'FirebaseError';
+var captureStackTrace = Error
+    .captureStackTrace;
+var FirebaseError = /** @class */ (function () {
+    function FirebaseError(code, message) {
+        this.code = code;
+        this.message = message;
+        // We want the stack value, if implemented by Error
+        if (captureStackTrace) {
+            // Patches this.stack, omitted calls above ErrorFactory#create
+            captureStackTrace(this, ErrorFactory.prototype.create);
+        }
+        else {
+            try {
+                // In case of IE11, stack will be set only after error is raised.
+                // https://docs.microsoft.com/en-us/scripting/javascript/reference/stack-property-error-javascript
+                throw Error.apply(this, arguments);
+            }
+            catch (err) {
+                this.name = ERROR_NAME;
+                // Make non-enumerable getter for the property.
+                Object.defineProperty(this, 'stack', {
+                    get: function () {
+                        return err.stack;
+                    }
+                });
+            }
+        }
+    }
+    return FirebaseError;
+}());
+// Back-door inheritance
+FirebaseError.prototype = Object.create(Error.prototype);
+FirebaseError.prototype.constructor = FirebaseError;
+FirebaseError.prototype.name = ERROR_NAME;
+var ErrorFactory = /** @class */ (function () {
+    function ErrorFactory(service, serviceName, errors) {
+        this.service = service;
+        this.serviceName = serviceName;
+        this.errors = errors;
+        // Matches {$name}, by default.
+        this.pattern = /\{\$([^}]+)}/g;
+        // empty
+    }
+    ErrorFactory.prototype.create = function (code, data) {
+        if (data === undefined) {
+            data = {};
+        }
+        var template = this.errors[code];
+        var fullCode = this.service + '/' + code;
+        var message;
+        if (template === undefined) {
+            message = 'Error';
+        }
+        else {
+            message = template.replace(this.pattern, function (match, key) {
+                var value = data[key];
+                return value !== undefined ? value.toString() : '<' + key + '?>';
+            });
+        }
+        // Service: Error message (service/code).
+        message = this.serviceName + ': ' + message + ' (' + fullCode + ').';
+        var err = new FirebaseError(fullCode, message);
+        // Populate the Error object with message parts for programmatic
+        // accesses (e.g., e.file).
+        for (var prop in data) {
+            if (!data.hasOwnProperty(prop) || prop.slice(-1) === '_') {
+                continue;
+            }
+            err[prop] = data[prop];
+        }
+        return err;
+    };
+    return ErrorFactory;
+}());
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+ * Evaluates a JSON string into a javascript object.
+ *
+ * @param {string} str A string containing JSON.
+ * @return {*} The javascript object representing the specified JSON.
+ */
+function jsonEval(str) {
+    return JSON.parse(str);
+}
+/**
+ * Returns JSON representing a javascript object.
+ * @param {*} data Javascript object to be stringified.
+ * @return {string} The JSON contents of the object.
+ */
+function stringify(data) {
+    return JSON.stringify(data);
+}
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+ * Decodes a Firebase auth. token into constituent parts.
+ *
+ * Notes:
+ * - May return with invalid / incomplete claims if there's no native base64 decoding support.
+ * - Doesn't check if the token is actually valid.
+ *
+ * @param {?string} token
+ * @return {{header: *, claims: *, data: *, signature: string}}
+ */
+var decode = function (token) {
+    var header = {}, claims = {}, data = {}, signature = '';
+    try {
+        var parts = token.split('.');
+        header = jsonEval(base64Decode(parts[0]) || '');
+        claims = jsonEval(base64Decode(parts[1]) || '');
+        signature = parts[2];
+        data = claims['d'] || {};
+        delete claims['d'];
+    }
+    catch (e) { }
+    return {
+        header: header,
+        claims: claims,
+        data: data,
+        signature: signature
+    };
+};
+/**
+ * Decodes a Firebase auth. token and checks the validity of its format. Expects a valid issued-at time and non-empty
+ * signature.
+ *
+ * Notes:
+ * - May return a false negative if there's no native base64 decoding support.
+ * - Doesn't check if the token is actually valid.
+ *
+ * @param {?string} token
+ * @return {boolean}
+ */
+var isValidFormat = function (token) {
+    var decoded = decode(token), claims = decoded.claims;
+    return (!!decoded.signature &&
+        !!claims &&
+        typeof claims === 'object' &&
+        claims.hasOwnProperty('iat'));
+};
+/**
+ * Attempts to peer into an auth token and determine if it's an admin auth token by looking at the claims portion.
+ *
+ * Notes:
+ * - May return a false negative if there's no native base64 decoding support.
+ * - Doesn't check if the token is actually valid.
+ *
+ * @param {?string} token
+ * @return {boolean}
+ */
+var isAdmin = function (token) {
+    var claims = decode(token).claims;
+    return typeof claims === 'object' && claims['admin'] === true;
+};
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+// See http://www.devthought.com/2012/01/18/an-object-is-not-a-hash/
+var contains = function (obj, key) {
+    return Object.prototype.hasOwnProperty.call(obj, key);
+};
+var safeGet = function (obj, key) {
+    if (Object.prototype.hasOwnProperty.call(obj, key))
+        return obj[key];
+    // else return undefined.
+};
+/**
+ * Enumerates the keys/values in an object, excluding keys defined on the prototype.
+ *
+ * @param {?Object.<K,V>} obj Object to enumerate.
+ * @param {!function(K, V)} fn Function to call for each key and value.
+ * @template K,V
+ */
+var forEach = function (obj, fn) {
+    for (var key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+            fn(key, obj[key]);
+        }
+    }
+};
+/**
+ * Copies all the (own) properties from one object to another.
+ * @param {!Object} objTo
+ * @param {!Object} objFrom
+ * @return {!Object} objTo
+ */
+var extend = function (objTo, objFrom) {
+    forEach(objFrom, function (key, value) {
+        objTo[key] = value;
+    });
+    return objTo;
+};
+/**
+ * Returns a clone of the specified object.
+ * @param {!Object} obj
+ * @return {!Object} cloned obj.
+ */
+var clone = function (obj) {
+    return extend({}, obj);
+};
+var isEmpty = function (obj) {
+    for (var key in obj) {
+        return false;
+    }
+    return true;
+};
+var getCount = function (obj) {
+    var rv = 0;
+    for (var key in obj) {
+        rv++;
+    }
+    return rv;
+};
+var map = function (obj, f, opt_obj) {
+    var res = {};
+    for (var key in obj) {
+        res[key] = f.call(opt_obj, obj[key], key, obj);
+    }
+    return res;
+};
+var findKey = function (obj, fn, opt_this) {
+    for (var key in obj) {
+        if (fn.call(opt_this, obj[key], key, obj)) {
+            return key;
+        }
+    }
+    return undefined;
+};
+var findValue = function (obj, fn, opt_this) {
+    var key = findKey(obj, fn, opt_this);
+    return key && obj[key];
+};
+var getAnyKey = function (obj) {
+    for (var key in obj) {
+        return key;
+    }
+};
+var getValues = function (obj) {
+    var res = [];
+    var i = 0;
+    for (var key in obj) {
+        res[i++] = obj[key];
+    }
+    return res;
+};
+/**
+ * Tests whether every key/value pair in an object pass the test implemented
+ * by the provided function
+ *
+ * @param {?Object.<K,V>} obj Object to test.
+ * @param {!function(K, V)} fn Function to call for each key and value.
+ * @template K,V
+ */
+var every = function (obj, fn) {
+    for (var key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+            if (!fn(key, obj[key])) {
+                return false;
+            }
+        }
+    }
+    return true;
+};
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+ * Returns a querystring-formatted string (e.g. &arg=val&arg2=val2) from a params
+ * object (e.g. {arg: 'val', arg2: 'val2'})
+ * Note: You must prepend it with ? when adding it to a URL.
+ *
+ * @param {!Object} querystringParams
+ * @return {string}
+ */
+var querystring = function (querystringParams) {
+    var params = [];
+    forEach(querystringParams, function (key, value) {
+        if (Array.isArray(value)) {
+            value.forEach(function (arrayVal) {
+                params.push(encodeURIComponent(key) + '=' + encodeURIComponent(arrayVal));
+            });
+        }
+        else {
+            params.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+        }
+    });
+    return params.length ? '&' + params.join('&') : '';
+};
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+// Copyright 2011 The Closure Library Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS-IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+/**
+ * @fileoverview Abstract cryptographic hash interface.
+ *
+ * See Sha1 and Md5 for sample implementations.
+ *
+ */
+/**
+ * Create a cryptographic hash instance.
+ *
+ * @constructor
+ * @struct
+ */
+var Hash = /** @class */ (function () {
+    function Hash() {
+        /**
+         * The block size for the hasher.
+         * @type {number}
+         */
+        this.blockSize = -1;
+    }
+    return Hash;
+}());
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+ * @fileoverview SHA-1 cryptographic hash.
+ * Variable names follow the notation in FIPS PUB 180-3:
+ * http://csrc.nist.gov/publications/fips/fips180-3/fips180-3_final.pdf.
+ *
+ * Usage:
+ *   var sha1 = new sha1();
+ *   sha1.update(bytes);
+ *   var hash = sha1.digest();
+ *
+ * Performance:
+ *   Chrome 23:   ~400 Mbit/s
+ *   Firefox 16:  ~250 Mbit/s
+ *
+ */
+/**
+ * SHA-1 cryptographic hash constructor.
+ *
+ * The properties declared here are discussed in the above algorithm document.
+ * @constructor
+ * @extends {Hash}
+ * @final
+ * @struct
+ */
+var Sha1 = /** @class */ (function (_super) {
+    __extends(Sha1, _super);
+    function Sha1() {
+        var _this = _super.call(this) || this;
+        /**
+         * Holds the previous values of accumulated variables a-e in the compress_
+         * function.
+         * @type {!Array<number>}
+         * @private
+         */
+        _this.chain_ = [];
+        /**
+         * A buffer holding the partially computed hash result.
+         * @type {!Array<number>}
+         * @private
+         */
+        _this.buf_ = [];
+        /**
+         * An array of 80 bytes, each a part of the message to be hashed.  Referred to
+         * as the message schedule in the docs.
+         * @type {!Array<number>}
+         * @private
+         */
+        _this.W_ = [];
+        /**
+         * Contains data needed to pad messages less than 64 bytes.
+         * @type {!Array<number>}
+         * @private
+         */
+        _this.pad_ = [];
+        /**
+         * @private {number}
+         */
+        _this.inbuf_ = 0;
+        /**
+         * @private {number}
+         */
+        _this.total_ = 0;
+        _this.blockSize = 512 / 8;
+        _this.pad_[0] = 128;
+        for (var i = 1; i < _this.blockSize; ++i) {
+            _this.pad_[i] = 0;
+        }
+        _this.reset();
+        return _this;
+    }
+    Sha1.prototype.reset = function () {
+        this.chain_[0] = 0x67452301;
+        this.chain_[1] = 0xefcdab89;
+        this.chain_[2] = 0x98badcfe;
+        this.chain_[3] = 0x10325476;
+        this.chain_[4] = 0xc3d2e1f0;
+        this.inbuf_ = 0;
+        this.total_ = 0;
+    };
+    /**
+     * Internal compress helper function.
+     * @param {!Array<number>|!Uint8Array|string} buf Block to compress.
+     * @param {number=} opt_offset Offset of the block in the buffer.
+     * @private
+     */
+    Sha1.prototype.compress_ = function (buf, opt_offset) {
+        if (!opt_offset) {
+            opt_offset = 0;
+        }
+        var W = this.W_;
+        // get 16 big endian words
+        if (typeof buf === 'string') {
+            for (var i = 0; i < 16; i++) {
+                // TODO(user): [bug 8140122] Recent versions of Safari for Mac OS and iOS
+                // have a bug that turns the post-increment ++ operator into pre-increment
+                // during JIT compilation.  We have code that depends heavily on SHA-1 for
+                // correctness and which is affected by this bug, so I've removed all uses
+                // of post-increment ++ in which the result value is used.  We can revert
+                // this change once the Safari bug
+                // (https://bugs.webkit.org/show_bug.cgi?id=109036) has been fixed and
+                // most clients have been updated.
+                W[i] =
+                    (buf.charCodeAt(opt_offset) << 24) |
+                        (buf.charCodeAt(opt_offset + 1) << 16) |
+                        (buf.charCodeAt(opt_offset + 2) << 8) |
+                        buf.charCodeAt(opt_offset + 3);
+                opt_offset += 4;
+            }
+        }
+        else {
+            for (var i = 0; i < 16; i++) {
+                W[i] =
+                    (buf[opt_offset] << 24) |
+                        (buf[opt_offset + 1] << 16) |
+                        (buf[opt_offset + 2] << 8) |
+                        buf[opt_offset + 3];
+                opt_offset += 4;
+            }
+        }
+        // expand to 80 words
+        for (var i = 16; i < 80; i++) {
+            var t = W[i - 3] ^ W[i - 8] ^ W[i - 14] ^ W[i - 16];
+            W[i] = ((t << 1) | (t >>> 31)) & 0xffffffff;
+        }
+        var a = this.chain_[0];
+        var b = this.chain_[1];
+        var c = this.chain_[2];
+        var d = this.chain_[3];
+        var e = this.chain_[4];
+        var f, k;
+        // TODO(user): Try to unroll this loop to speed up the computation.
+        for (var i = 0; i < 80; i++) {
+            if (i < 40) {
+                if (i < 20) {
+                    f = d ^ (b & (c ^ d));
+                    k = 0x5a827999;
+                }
+                else {
+                    f = b ^ c ^ d;
+                    k = 0x6ed9eba1;
+                }
+            }
+            else {
+                if (i < 60) {
+                    f = (b & c) | (d & (b | c));
+                    k = 0x8f1bbcdc;
+                }
+                else {
+                    f = b ^ c ^ d;
+                    k = 0xca62c1d6;
+                }
+            }
+            var t = (((a << 5) | (a >>> 27)) + f + e + k + W[i]) & 0xffffffff;
+            e = d;
+            d = c;
+            c = ((b << 30) | (b >>> 2)) & 0xffffffff;
+            b = a;
+            a = t;
+        }
+        this.chain_[0] = (this.chain_[0] + a) & 0xffffffff;
+        this.chain_[1] = (this.chain_[1] + b) & 0xffffffff;
+        this.chain_[2] = (this.chain_[2] + c) & 0xffffffff;
+        this.chain_[3] = (this.chain_[3] + d) & 0xffffffff;
+        this.chain_[4] = (this.chain_[4] + e) & 0xffffffff;
+    };
+    Sha1.prototype.update = function (bytes, opt_length) {
+        // TODO(johnlenz): tighten the function signature and remove this check
+        if (bytes == null) {
+            return;
+        }
+        if (opt_length === undefined) {
+            opt_length = bytes.length;
+        }
+        var lengthMinusBlock = opt_length - this.blockSize;
+        var n = 0;
+        // Using local instead of member variables gives ~5% speedup on Firefox 16.
+        var buf = this.buf_;
+        var inbuf = this.inbuf_;
+        // The outer while loop should execute at most twice.
+        while (n < opt_length) {
+            // When we have no data in the block to top up, we can directly process the
+            // input buffer (assuming it contains sufficient data). This gives ~25%
+            // speedup on Chrome 23 and ~15% speedup on Firefox 16, but requires that
+            // the data is provided in large chunks (or in multiples of 64 bytes).
+            if (inbuf == 0) {
+                while (n <= lengthMinusBlock) {
+                    this.compress_(bytes, n);
+                    n += this.blockSize;
+                }
+            }
+            if (typeof bytes === 'string') {
+                while (n < opt_length) {
+                    buf[inbuf] = bytes.charCodeAt(n);
+                    ++inbuf;
+                    ++n;
+                    if (inbuf == this.blockSize) {
+                        this.compress_(buf);
+                        inbuf = 0;
+                        // Jump to the outer loop so we use the full-block optimization.
+                        break;
+                    }
+                }
+            }
+            else {
+                while (n < opt_length) {
+                    buf[inbuf] = bytes[n];
+                    ++inbuf;
+                    ++n;
+                    if (inbuf == this.blockSize) {
+                        this.compress_(buf);
+                        inbuf = 0;
+                        // Jump to the outer loop so we use the full-block optimization.
+                        break;
+                    }
+                }
+            }
+        }
+        this.inbuf_ = inbuf;
+        this.total_ += opt_length;
+    };
+    /** @override */
+    Sha1.prototype.digest = function () {
+        var digest = [];
+        var totalBits = this.total_ * 8;
+        // Add pad 0x80 0x00*.
+        if (this.inbuf_ < 56) {
+            this.update(this.pad_, 56 - this.inbuf_);
+        }
+        else {
+            this.update(this.pad_, this.blockSize - (this.inbuf_ - 56));
+        }
+        // Add # bits.
+        for (var i = this.blockSize - 1; i >= 56; i--) {
+            this.buf_[i] = totalBits & 255;
+            totalBits /= 256; // Don't use bit-shifting here!
+        }
+        this.compress_(this.buf_);
+        var n = 0;
+        for (var i = 0; i < 5; i++) {
+            for (var j = 24; j >= 0; j -= 8) {
+                digest[n] = (this.chain_[i] >> j) & 255;
+                ++n;
+            }
+        }
+        return digest;
+    };
+    return Sha1;
+}(Hash));
+
+/**
+ * Helper to make a Subscribe function (just like Promise helps make a
+ * Thenable).
+ *
+ * @param executor Function which can make calls to a single Observer
+ *     as a proxy.
+ * @param onNoObservers Callback when count of Observers goes to zero.
+ */
+function createSubscribe(executor, onNoObservers) {
+    var proxy = new ObserverProxy(executor, onNoObservers);
+    return proxy.subscribe.bind(proxy);
+}
+/**
+ * Implement fan-out for any number of Observers attached via a subscribe
+ * function.
+ */
+var ObserverProxy = /** @class */ (function () {
+    /**
+     * @param executor Function which can make calls to a single Observer
+     *     as a proxy.
+     * @param onNoObservers Callback when count of Observers goes to zero.
+     */
+    function ObserverProxy(executor, onNoObservers) {
+        var _this = this;
+        this.observers = [];
+        this.unsubscribes = [];
+        this.observerCount = 0;
+        // Micro-task scheduling by calling task.then().
+        this.task = Promise.resolve();
+        this.finalized = false;
+        this.onNoObservers = onNoObservers;
+        // Call the executor asynchronously so subscribers that are called
+        // synchronously after the creation of the subscribe function
+        // can still receive the very first value generated in the executor.
+        this.task
+            .then(function () {
+            executor(_this);
+        })
+            .catch(function (e) {
+            _this.error(e);
+        });
+    }
+    ObserverProxy.prototype.next = function (value) {
+        this.forEachObserver(function (observer) {
+            observer.next(value);
+        });
+    };
+    ObserverProxy.prototype.error = function (error) {
+        this.forEachObserver(function (observer) {
+            observer.error(error);
+        });
+        this.close(error);
+    };
+    ObserverProxy.prototype.complete = function () {
+        this.forEachObserver(function (observer) {
+            observer.complete();
+        });
+        this.close();
+    };
+    /**
+     * Subscribe function that can be used to add an Observer to the fan-out list.
+     *
+     * - We require that no event is sent to a subscriber sychronously to their
+     *   call to subscribe().
+     */
+    ObserverProxy.prototype.subscribe = function (nextOrObserver, error, complete) {
+        var _this = this;
+        var observer;
+        if (nextOrObserver === undefined &&
+            error === undefined &&
+            complete === undefined) {
+            throw new Error('Missing Observer.');
+        }
+        // Assemble an Observer object when passed as callback functions.
+        if (implementsAnyMethods(nextOrObserver, ['next', 'error', 'complete'])) {
+            observer = nextOrObserver;
+        }
+        else {
+            observer = {
+                next: nextOrObserver,
+                error: error,
+                complete: complete
+            };
+        }
+        if (observer.next === undefined) {
+            observer.next = noop$1;
+        }
+        if (observer.error === undefined) {
+            observer.error = noop$1;
+        }
+        if (observer.complete === undefined) {
+            observer.complete = noop$1;
+        }
+        var unsub = this.unsubscribeOne.bind(this, this.observers.length);
+        // Attempt to subscribe to a terminated Observable - we
+        // just respond to the Observer with the final error or complete
+        // event.
+        if (this.finalized) {
+            this.task.then(function () {
+                try {
+                    if (_this.finalError) {
+                        observer.error(_this.finalError);
+                    }
+                    else {
+                        observer.complete();
+                    }
+                }
+                catch (e) {
+                    // nothing
+                }
+                return;
+            });
+        }
+        this.observers.push(observer);
+        return unsub;
+    };
+    // Unsubscribe is synchronous - we guarantee that no events are sent to
+    // any unsubscribed Observer.
+    ObserverProxy.prototype.unsubscribeOne = function (i) {
+        if (this.observers === undefined || this.observers[i] === undefined) {
+            return;
+        }
+        delete this.observers[i];
+        this.observerCount -= 1;
+        if (this.observerCount === 0 && this.onNoObservers !== undefined) {
+            this.onNoObservers(this);
+        }
+    };
+    ObserverProxy.prototype.forEachObserver = function (fn) {
+        if (this.finalized) {
+            // Already closed by previous event....just eat the additional values.
+            return;
+        }
+        // Since sendOne calls asynchronously - there is no chance that
+        // this.observers will become undefined.
+        for (var i = 0; i < this.observers.length; i++) {
+            this.sendOne(i, fn);
+        }
+    };
+    // Call the Observer via one of it's callback function. We are careful to
+    // confirm that the observe has not been unsubscribed since this asynchronous
+    // function had been queued.
+    ObserverProxy.prototype.sendOne = function (i, fn) {
+        var _this = this;
+        // Execute the callback asynchronously
+        this.task.then(function () {
+            if (_this.observers !== undefined && _this.observers[i] !== undefined) {
+                try {
+                    fn(_this.observers[i]);
+                }
+                catch (e) {
+                    // Ignore exceptions raised in Observers or missing methods of an
+                    // Observer.
+                    // Log error to console. b/31404806
+                    if (typeof console !== 'undefined' && console.error) {
+                        console.error(e);
+                    }
+                }
+            }
+        });
+    };
+    ObserverProxy.prototype.close = function (err) {
+        var _this = this;
+        if (this.finalized) {
+            return;
+        }
+        this.finalized = true;
+        if (err !== undefined) {
+            this.finalError = err;
+        }
+        // Proxy is no longer needed - garbage collect references
+        this.task.then(function () {
+            _this.observers = undefined;
+            _this.onNoObservers = undefined;
+        });
+    };
+    return ObserverProxy;
+}());
+/**
+ * Return true if the object passed in implements any of the named methods.
+ */
+function implementsAnyMethods(obj, methods) {
+    if (typeof obj !== 'object' || obj === null) {
+        return false;
+    }
+    for (var _i = 0, methods_1 = methods; _i < methods_1.length; _i++) {
+        var method = methods_1[_i];
+        if (method in obj && typeof obj[method] === 'function') {
+            return true;
+        }
+    }
+    return false;
+}
+function noop$1() {
+    // do nothing
+}
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+ * Check to make sure the appropriate number of arguments are provided for a public function.
+ * Throws an error if it fails.
+ *
+ * @param {!string} fnName The function name
+ * @param {!number} minCount The minimum number of arguments to allow for the function call
+ * @param {!number} maxCount The maximum number of argument to allow for the function call
+ * @param {!number} argCount The actual number of arguments provided.
+ */
+var validateArgCount = function (fnName, minCount, maxCount, argCount) {
+    var argError;
+    if (argCount < minCount) {
+        argError = 'at least ' + minCount;
+    }
+    else if (argCount > maxCount) {
+        argError = maxCount === 0 ? 'none' : 'no more than ' + maxCount;
+    }
+    if (argError) {
+        var error = fnName +
+            ' failed: Was called with ' +
+            argCount +
+            (argCount === 1 ? ' argument.' : ' arguments.') +
+            ' Expects ' +
+            argError +
+            '.';
+        throw new Error(error);
+    }
+};
+/**
+ * Generates a string to prefix an error message about failed argument validation
+ *
+ * @param {!string} fnName The function name
+ * @param {!number} argumentNumber The index of the argument
+ * @param {boolean} optional Whether or not the argument is optional
+ * @return {!string} The prefix to add to the error thrown for validation.
+ */
+function errorPrefix(fnName, argumentNumber, optional) {
+    var argName = '';
+    switch (argumentNumber) {
+        case 1:
+            argName = optional ? 'first' : 'First';
+            break;
+        case 2:
+            argName = optional ? 'second' : 'Second';
+            break;
+        case 3:
+            argName = optional ? 'third' : 'Third';
+            break;
+        case 4:
+            argName = optional ? 'fourth' : 'Fourth';
+            break;
+        default:
+            throw new Error('errorPrefix called with argumentNumber > 4.  Need to update it?');
+    }
+    var error = fnName + ' failed: ';
+    error += argName + ' argument ';
+    return error;
+}
+function validateCallback(fnName, argumentNumber, callback, optional) {
+    if (optional && !callback)
+        return;
+    if (typeof callback !== 'function')
+        throw new Error(errorPrefix(fnName, argumentNumber, optional) +
+            'must be a valid function.');
+}
+function validateContextObject(fnName, argumentNumber, context, optional) {
+    if (optional && !context)
+        return;
+    if (typeof context !== 'object' || context === null)
+        throw new Error(errorPrefix(fnName, argumentNumber, optional) +
+            'must be a valid context object.');
+}
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+// Code originally came from goog.crypt.stringToUtf8ByteArray, but for some reason they
+// automatically replaced '\r\n' with '\n', and they didn't handle surrogate pairs,
+// so it's been modified.
+// Note that not all Unicode characters appear as single characters in JavaScript strings.
+// fromCharCode returns the UTF-16 encoding of a character - so some Unicode characters
+// use 2 characters in Javascript.  All 4-byte UTF-8 characters begin with a first
+// character in the range 0xD800 - 0xDBFF (the first character of a so-called surrogate
+// pair).
+// See http://www.ecma-international.org/ecma-262/5.1/#sec-15.1.3
+/**
+ * @param {string} str
+ * @return {Array}
+ */
+var stringToByteArray$1 = function (str) {
+    var out = [], p = 0;
+    for (var i = 0; i < str.length; i++) {
+        var c = str.charCodeAt(i);
+        // Is this the lead surrogate in a surrogate pair?
+        if (c >= 0xd800 && c <= 0xdbff) {
+            var high = c - 0xd800; // the high 10 bits.
+            i++;
+            assert(i < str.length, 'Surrogate pair missing trail surrogate.');
+            var low = str.charCodeAt(i) - 0xdc00; // the low 10 bits.
+            c = 0x10000 + (high << 10) + low;
+        }
+        if (c < 128) {
+            out[p++] = c;
+        }
+        else if (c < 2048) {
+            out[p++] = (c >> 6) | 192;
+            out[p++] = (c & 63) | 128;
+        }
+        else if (c < 65536) {
+            out[p++] = (c >> 12) | 224;
+            out[p++] = ((c >> 6) & 63) | 128;
+            out[p++] = (c & 63) | 128;
+        }
+        else {
+            out[p++] = (c >> 18) | 240;
+            out[p++] = ((c >> 12) & 63) | 128;
+            out[p++] = ((c >> 6) & 63) | 128;
+            out[p++] = (c & 63) | 128;
+        }
+    }
+    return out;
+};
+/**
+ * Calculate length without actually converting; useful for doing cheaper validation.
+ * @param {string} str
+ * @return {number}
+ */
+var stringLength = function (str) {
+    var p = 0;
+    for (var i = 0; i < str.length; i++) {
+        var c = str.charCodeAt(i);
+        if (c < 128) {
+            p++;
+        }
+        else if (c < 2048) {
+            p += 2;
+        }
+        else if (c >= 0xd800 && c <= 0xdbff) {
+            // Lead surrogate of a surrogate pair.  The pair together will take 4 bytes to represent.
+            p += 4;
+            i++; // skip trail surrogate.
+        }
+        else {
+            p += 3;
+        }
+    }
+    return p;
+};
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var contains$1 = function (obj, key) {
+    return Object.prototype.hasOwnProperty.call(obj, key);
+};
+var DEFAULT_ENTRY_NAME = '[DEFAULT]';
+// An array to capture listeners before the true auth functions
+// exist
+var tokenListeners = [];
+/**
+ * Global context object for a collection of services using
+ * a shared authentication state.
+ */
+var FirebaseAppImpl = /** @class */ (function () {
+    function FirebaseAppImpl(options, config, firebase_) {
+        this.firebase_ = firebase_;
+        this.isDeleted_ = false;
+        this.services_ = {};
+        this.name_ = config.name;
+        this._automaticDataCollectionEnabled =
+            config.automaticDataCollectionEnabled || false;
+        this.options_ = deepCopy(options);
+        this.INTERNAL = {
+            getUid: function () { return null; },
+            getToken: function () { return Promise.resolve(null); },
+            addAuthTokenListener: function (callback) {
+                tokenListeners.push(callback);
+                // Make sure callback is called, asynchronously, in the absence of the auth module
+                setTimeout(function () { return callback(null); }, 0);
+            },
+            removeAuthTokenListener: function (callback) {
+                tokenListeners = tokenListeners.filter(function (listener) { return listener !== callback; });
+            }
+        };
+    }
+    Object.defineProperty(FirebaseAppImpl.prototype, "automaticDataCollectionEnabled", {
+        get: function () {
+            this.checkDestroyed_();
+            return this._automaticDataCollectionEnabled;
+        },
+        set: function (val) {
+            this.checkDestroyed_();
+            this._automaticDataCollectionEnabled = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(FirebaseAppImpl.prototype, "name", {
+        get: function () {
+            this.checkDestroyed_();
+            return this.name_;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(FirebaseAppImpl.prototype, "options", {
+        get: function () {
+            this.checkDestroyed_();
+            return this.options_;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    FirebaseAppImpl.prototype.delete = function () {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.checkDestroyed_();
+            resolve();
+        })
+            .then(function () {
+            _this.firebase_.INTERNAL.removeApp(_this.name_);
+            var services = [];
+            Object.keys(_this.services_).forEach(function (serviceKey) {
+                Object.keys(_this.services_[serviceKey]).forEach(function (instanceKey) {
+                    services.push(_this.services_[serviceKey][instanceKey]);
+                });
+            });
+            return Promise.all(services.map(function (service) {
+                return service.INTERNAL.delete();
+            }));
+        })
+            .then(function () {
+            _this.isDeleted_ = true;
+            _this.services_ = {};
+        });
+    };
+    /**
+     * Return a service instance associated with this app (creating it
+     * on demand), identified by the passed instanceIdentifier.
+     *
+     * NOTE: Currently storage is the only one that is leveraging this
+     * functionality. They invoke it by calling:
+     *
+     * ```javascript
+     * firebase.app().storage('STORAGE BUCKET ID')
+     * ```
+     *
+     * The service name is passed to this already
+     * @internal
+     */
+    FirebaseAppImpl.prototype._getService = function (name, instanceIdentifier) {
+        if (instanceIdentifier === void 0) { instanceIdentifier = DEFAULT_ENTRY_NAME; }
+        this.checkDestroyed_();
+        if (!this.services_[name]) {
+            this.services_[name] = {};
+        }
+        if (!this.services_[name][instanceIdentifier]) {
+            /**
+             * If a custom instance has been defined (i.e. not '[DEFAULT]')
+             * then we will pass that instance on, otherwise we pass `null`
+             */
+            var instanceSpecifier = instanceIdentifier !== DEFAULT_ENTRY_NAME
+                ? instanceIdentifier
+                : undefined;
+            var service = this.firebase_.INTERNAL.factories[name](this, this.extendApp.bind(this), instanceSpecifier);
+            this.services_[name][instanceIdentifier] = service;
+        }
+        return this.services_[name][instanceIdentifier];
+    };
+    /**
+     * Callback function used to extend an App instance at the time
+     * of service instance creation.
+     */
+    FirebaseAppImpl.prototype.extendApp = function (props) {
+        var _this = this;
+        // Copy the object onto the FirebaseAppImpl prototype
+        deepExtend(this, props);
+        /**
+         * If the app has overwritten the addAuthTokenListener stub, forward
+         * the active token listeners on to the true fxn.
+         *
+         * TODO: This function is required due to our current module
+         * structure. Once we are able to rely strictly upon a single module
+         * implementation, this code should be refactored and Auth should
+         * provide these stubs and the upgrade logic
+         */
+        if (props.INTERNAL && props.INTERNAL.addAuthTokenListener) {
+            tokenListeners.forEach(function (listener) {
+                _this.INTERNAL.addAuthTokenListener(listener);
+            });
+            tokenListeners = [];
+        }
+    };
+    /**
+     * This function will throw an Error if the App has already been deleted -
+     * use before performing API actions on the App.
+     */
+    FirebaseAppImpl.prototype.checkDestroyed_ = function () {
+        if (this.isDeleted_) {
+            error('app-deleted', { name: this.name_ });
+        }
+    };
+    return FirebaseAppImpl;
+}());
+// Prevent dead-code elimination of these methods w/o invalid property
+// copying.
+(FirebaseAppImpl.prototype.name && FirebaseAppImpl.prototype.options) ||
+    FirebaseAppImpl.prototype.delete ||
+    console.log('dc');
+/**
+ * Return a firebase namespace object.
+ *
+ * In production, this will be called exactly once and the result
+ * assigned to the 'firebase' global.  It may be called multiple times
+ * in unit tests.
+ */
+function createFirebaseNamespace() {
+    var apps_ = {};
+    var factories = {};
+    var appHooks = {};
+    // A namespace is a plain JavaScript Object.
+    var namespace = {
+        // Hack to prevent Babel from modifying the object returned
+        // as the firebase namespace.
+        __esModule: true,
+        initializeApp: initializeApp,
+        app: app,
+        apps: null,
+        Promise: Promise,
+        SDK_VERSION: '5.0.4',
+        INTERNAL: {
+            registerService: registerService,
+            createFirebaseNamespace: createFirebaseNamespace,
+            extendNamespace: extendNamespace,
+            createSubscribe: createSubscribe,
+            ErrorFactory: ErrorFactory,
+            removeApp: removeApp,
+            factories: factories,
+            useAsService: useAsService,
+            Promise: Promise,
+            deepExtend: deepExtend
+        }
+    };
+    // Inject a circular default export to allow Babel users who were previously
+    // using:
+    //
+    //   import firebase from 'firebase';
+    //   which becomes: var firebase = require('firebase').default;
+    //
+    // instead of
+    //
+    //   import * as firebase from 'firebase';
+    //   which becomes: var firebase = require('firebase');
+    patchProperty(namespace, 'default', namespace);
+    // firebase.apps is a read-only getter.
+    Object.defineProperty(namespace, 'apps', {
+        get: getApps
+    });
+    /**
+     * Called by App.delete() - but before any services associated with the App
+     * are deleted.
+     */
+    function removeApp(name) {
+        var app = apps_[name];
+        callAppHooks(app, 'delete');
+        delete apps_[name];
+    }
+    /**
+     * Get the App object for a given name (or DEFAULT).
+     */
+    function app(name) {
+        name = name || DEFAULT_ENTRY_NAME;
+        if (!contains$1(apps_, name)) {
+            error('no-app', { name: name });
+        }
+        return apps_[name];
+    }
+    patchProperty(app, 'App', FirebaseAppImpl);
+    function initializeApp(options, rawConfig) {
+        if (rawConfig === void 0) { rawConfig = {}; }
+        if (typeof rawConfig !== 'object' || rawConfig === null) {
+            var name_1 = rawConfig;
+            rawConfig = { name: name_1 };
+        }
+        var config = rawConfig;
+        if (config.name === undefined) {
+            config.name = DEFAULT_ENTRY_NAME;
+        }
+        var name = config.name;
+        if (typeof name !== 'string' || !name) {
+            error('bad-app-name', { name: name + '' });
+        }
+        if (contains$1(apps_, name)) {
+            error('duplicate-app', { name: name });
+        }
+        var app = new FirebaseAppImpl(options, config, namespace);
+        apps_[name] = app;
+        callAppHooks(app, 'create');
+        return app;
+    }
+    /*
+     * Return an array of all the non-deleted FirebaseApps.
+     */
+    function getApps() {
+        // Make a copy so caller cannot mutate the apps list.
+        return Object.keys(apps_).map(function (name) { return apps_[name]; });
+    }
+    /*
+     * Register a Firebase Service.
+     *
+     * firebase.INTERNAL.registerService()
+     *
+     * TODO: Implement serviceProperties.
+     */
+    function registerService(name, createService, serviceProperties, appHook, allowMultipleInstances) {
+        // Cannot re-register a service that already exists
+        if (factories[name]) {
+            error('duplicate-service', { name: name });
+        }
+        // Capture the service factory for later service instantiation
+        factories[name] = createService;
+        // Capture the appHook, if passed
+        if (appHook) {
+            appHooks[name] = appHook;
+            // Run the **new** app hook on all existing apps
+            getApps().forEach(function (app) {
+                appHook('create', app);
+            });
+        }
+        // The Service namespace is an accessor function ...
+        var serviceNamespace = function (appArg) {
+            if (appArg === void 0) { appArg = app(); }
+            if (typeof appArg[name] !== 'function') {
+                // Invalid argument.
+                // This happens in the following case: firebase.storage('gs:/')
+                error('invalid-app-argument', { name: name });
+            }
+            // Forward service instance lookup to the FirebaseApp.
+            return appArg[name]();
+        };
+        // ... and a container for service-level properties.
+        if (serviceProperties !== undefined) {
+            deepExtend(serviceNamespace, serviceProperties);
+        }
+        // Monkey-patch the serviceNamespace onto the firebase namespace
+        namespace[name] = serviceNamespace;
+        // Patch the FirebaseAppImpl prototype
+        FirebaseAppImpl.prototype[name] = function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            var serviceFxn = this._getService.bind(this, name);
+            return serviceFxn.apply(this, allowMultipleInstances ? args : []);
+        };
+        return serviceNamespace;
+    }
+    /**
+     * Patch the top-level firebase namespace with additional properties.
+     *
+     * firebase.INTERNAL.extendNamespace()
+     */
+    function extendNamespace(props) {
+        deepExtend(namespace, props);
+    }
+    function callAppHooks(app, eventName) {
+        Object.keys(factories).forEach(function (serviceName) {
+            // Ignore virtual services
+            var factoryName = useAsService(app, serviceName);
+            if (factoryName === null) {
+                return;
+            }
+            if (appHooks[factoryName]) {
+                appHooks[factoryName](eventName, app);
+            }
+        });
+    }
+    // Map the requested service to a registered service name
+    // (used to map auth to serverAuth service when needed).
+    function useAsService(app, name) {
+        if (name === 'serverAuth') {
+            return null;
+        }
+        var useService = name;
+        var options = app.options;
+        return useService;
+    }
+    return namespace;
+}
+function error(code, args) {
+    throw appErrors.create(code, args);
+}
+// TypeScript does not support non-string indexes!
+// let errors: {[code: AppError: string} = {
+var errors = {
+    'no-app': "No Firebase App '{$name}' has been created - " +
+        'call Firebase App.initializeApp()',
+    'bad-app-name': "Illegal App name: '{$name}",
+    'duplicate-app': "Firebase App named '{$name}' already exists",
+    'app-deleted': "Firebase App named '{$name}' already deleted",
+    'duplicate-service': "Firebase service named '{$name}' already registered",
+    'sa-not-supported': 'Initializing the Firebase SDK with a service ' +
+        'account is only allowed in a Node.js environment. On client ' +
+        'devices, you should instead initialize the SDK with an api key and ' +
+        'auth domain',
+    'invalid-app-argument': 'firebase.{$name}() takes either no argument or a ' +
+        'Firebase App instance.'
+};
+var appErrors = new ErrorFactory('app', 'Firebase', errors);
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var firebase = createFirebaseNamespace();
+
+export { firebase as a, global$1 as b, jsonEval as c, stringify as d, contains as e, assert as f, forEach as g, base64 as h, Sha1 as i, stringToByteArray$1 as j, isNodeSdk as k, stringLength as l, safeGet as m, errorPrefix as n, validateArgCount as o, validateCallback as p, Deferred as q, assertionError as r, clone as s, map as t, getCount as u, getAnyKey as v, every as w, validateContextObject as x, isEmpty as y, getValues as z, findValue as A, findKey as B, deepCopy as C, isMobileCordova as D, base64Encode as E, CONSTANTS as F, isAdmin as G, isValidFormat as H, isReactNative as I, querystring as J, __awaiter as K, __generator as L, __extends as M, ErrorFactory as N, createSubscribe as O, __assign as P };

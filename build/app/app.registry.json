@@ -2,66 +2,66 @@
   "namespace": "App",
   "fsNamespace": "app",
   "loader": "../app.js",
+  "corePolyfilled": "es5-build-disabled.js",
   "global": "app.global.js",
-  "core": "app.bkya1ua1.js",
-  "corePolyfilled": "app.tmw8ri9y.js",
+  "core": "app.core.js",
   "components": {
     "app-recent-event-card": {
-      "$": "bq6rb8mn"
+      "$": "app-recent-event-card"
     },
     "app-root": {
-      "$": "ghupxgl9"
+      "$": "app-root"
     },
     "my-web-about": {
-      "$": "6nh1acd7"
+      "$": "my-web-about"
     },
     "my-web-blog": {
-      "$": "cuq5cixn"
+      "$": "my-web-blog"
     },
     "my-web-book-library": {
-      "$": "cuq5cixn"
+      "$": "my-web-blog"
     },
     "my-web-bucketlist": {
-      "$": "s0zyzbg0"
+      "$": "my-web-bucketlist"
     },
     "my-web-contact": {
-      "$": "6nh1acd7"
+      "$": "my-web-about"
     },
     "my-web-event": {
-      "$": "oqzrvjux"
+      "$": "my-web-event"
     },
     "my-web-header": {
-      "$": "287iyw7r"
+      "$": "my-web-header"
     },
     "my-web-home": {
-      "$": "6nh1acd7"
+      "$": "my-web-about"
     },
     "my-web-more": {
-      "$": "6nh1acd7"
+      "$": "my-web-about"
     },
     "my-web-nav": {
-      "$": "ghupxgl9"
+      "$": "app-root"
     },
     "my-web-photo-gallery": {
-      "$": "s0zyzbg0"
+      "$": "my-web-bucketlist"
     },
     "my-web-portfolio": {
-      "$": "6nh1acd7"
+      "$": "my-web-about"
     },
     "my-web-social": {
-      "$": "cuq5cixn"
+      "$": "my-web-blog"
     },
     "my-web-twitter": {
-      "$": "cuq5cixn"
+      "$": "my-web-blog"
     },
     "stencil-route": {
-      "$": "ghupxgl9"
+      "$": "app-root"
     },
     "stencil-route-link": {
-      "$": "ghupxgl9"
+      "$": "app-root"
     },
     "stencil-router": {
-      "$": "ghupxgl9"
+      "$": "app-root"
     }
   }
 }
